@@ -88,8 +88,11 @@
   </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+<script src="https://unpkg.com/bs58@6.0.0/dist/index.min.js"></script>
 <script>
-/* ATOMIC FIZZ — 100% FINAL WORKING VERSION — DEC 2025 */
+/* ATOMIC FIZZ — FINAL STATIC WORKING VERSION — DEC 2025 */
+/* Uses your working Google satellite tiles (lyrs=s) + hardcoded locations + full static mocks + gear support */
 const API_BASE = window.location.origin;
 let map, playerMarker = null, wallet = null;
 let player = { lvl:1, hp:100, maxHp:100, caps:0, gear:[], claimed: new Set() };
@@ -97,6 +100,18 @@ let markers = {}, lastAccuracy = 999, playerLatLng = null;
 
 const MAX_ACCEPTABLE_ACCURACY = 20, AMBER_THRESHOLD = 40, SMOOTHING_WINDOW = 8;
 const MIN_UPDATE_DISTANCE = 1.5, CLAIM_RADIUS_METERS = 250;
+
+// Hardcoded locations (replaces /locations fetch)
+const LOCATIONS = [
+  { n: 'Hoover Dam', lat: 36.0159, lng: -114.7378, rarity: 'legendary', lvl: 5 },
+  { n: 'Vegas Strip', lat: 36.1097, lng: -115.1728, rarity: 'epic', lvl: 3 },
+  { n: 'Red Rock Canyon', lat: 36.1321, lng: -115.4282, rarity: 'rare', lvl: 2 },
+  { n: 'Helios One', lat: 36.2167, lng: -115.8667, rarity: 'common', lvl: 1 },
+  { n: 'Nipton', lat: 35.8667, lng: -114.3833, rarity: 'rare', lvl: 4 },
+  { n: 'Primm', lat: 35.8667, lng: -115.3833, rarity: 'common', lvl: 1 },
+  { n: 'Goodsprings', lat: 35.8333, lng: -115.4333, rarity: 'epic', lvl: 3 },
+  { n: 'Novac', lat: 36.55, lng: -114.6167, rarity: 'legendary', lvl: 6 }
+];
 
 class SimpleKalman {
   constructor(q=1e-7, r=1e-5){ this.q=q; this.r=r; this.x=null; this.p=1; }
@@ -128,7 +143,7 @@ function updateAccuracyBadge(acc) {
 }
 
 function ensurePlayerMarkerFromSamples() {
-  if (!gpsSamples.length) return;
+  if (!gpsSamples.length || !map) return;
   const recent = gpsSamples.slice(-SMOOTHING_WINDOW);
   const c = weightedCentroid(recent); if (!c) return;
   const lat = kfLat.update(c.lat), lng = kfLng.update(c.lng);
@@ -142,15 +157,59 @@ function ensurePlayerMarkerFromSamples() {
 }
 
 function saveState(){ try{ localStorage.setItem('af_state', JSON.stringify({
-  player:{lvl:player.lvl,hp:player.hp,maxHp:player.maxHp,caps:player.caps},
+  player:{lvl:player.lvl,hp:player.hp,maxHp:player.maxHp,caps:player.caps,gear:player.gear},
   claimed:Array.from(player.claimed),
   playerLatLng: playerLatLng ? [playerLatLng.lat, playerLatLng.lng] : null
 })); }catch(e){} }
-function loadState(){ try{ const s=JSON.parse(localStorage.getItem('af_state')||'null'); if(s){
+function loadState(){ try{ const s=JSON.parse(localStorage.getItem('af_state')||'{}'); if(s){
   if(s.player) Object.assign(player,s.player);
   if(Array.isArray(s.claimed)) player.claimed=new Set(s.claimed);
+  if(Array.isArray(s.gear)) player.gear = s.gear;
   if(Array.isArray(s.playerLatLng)) playerLatLng=L.latLng(s.playerLatLng[0],s.playerLatLng[1]);
-}}catch(e){} } loadState();
+}}catch(e){} }
+
+// Mock fetch for static (replaces server calls)
+async function mockFetch(url, options = {}) {
+  if (url.includes('/locations')) {
+    return { ok: true, json: () => Promise.resolve(LOCATIONS) };
+  }
+  if (url.includes('/player/')) {
+    const addr = url.split('/player/')[1];
+    const key = `af_player_${addr}`;
+    const saved = JSON.parse(localStorage.getItem(key) || '{}');
+    return { ok: true, json: () => Promise.resolve(saved || { lvl:1, hp:100, maxHp:100, caps:0, gear:[], claimed:[] }) };
+  }
+  if (url.includes('/claim-survival') && options.method === 'POST') {
+    const body = JSON.parse(options.body);
+    const addr = body.wallet;
+    const spot = body.spot;
+    try {
+      const ts = Date.now();
+      const msg = `AtomicFizz claim:${spot}:${ts}`;
+      const enc = new TextEncoder().encode(msg);
+      const signed = await wallet.signMessage(enc,'utf8');
+      const sig = btoa(String.fromCharCode(...signed));
+      if (body.signature !== sig) throw new Error('Invalid signature');
+      const key = `af_player_${addr}`;
+      const saved = JSON.parse(localStorage.getItem(key) || '{}');
+      if (saved.claimed?.includes(spot)) throw new Error('Already claimed');
+      const loc = LOCATIONS.find(l => l.n === spot);
+      const capsEarned = loc.lvl * 25;
+      const loot = { name: `${spot} Fizz Cap`, rarity: loc.rarity, qty: 1 };
+      saved.caps = (saved.caps || 0) + capsEarned;
+      saved.gear = [...(saved.gear || []), loot];
+      saved.claimed = [...(saved.claimed || []), spot];
+      localStorage.setItem(key, JSON.stringify(saved));
+      player.caps += capsEarned;
+      player.gear.push(loot);
+      player.claimed.add(spot);
+      return { ok: true, json: () => Promise.resolve({ success: true, capsEarned, loot, chainTx: { explorer: `https://solscan.io/tx/mock-${ts}` } }) };
+    } catch(e) {
+      return { ok: false, json: () => Promise.resolve({ success: false, error: e.message }) };
+    }
+  }
+  return { ok: false };
+}
 
 function setStatus(t,ms=2500){ const el=document.getElementById('status'); el.textContent=`Status: ${t}`;
   clearTimeout(el._t); el._t=setTimeout(()=>el.textContent=wallet?'Status: connected':'Status: ready',ms); }
@@ -161,7 +220,7 @@ function updateUI(){
   document.getElementById('claimed').textContent=player.claimed.size;
 }
 
-// PHANTOM + SERVER SYNC
+// Phantom connect
 document.getElementById('connectPhantom').addEventListener('click', async () => {
   if (wallet) { setStatus('Refreshing...'); await syncPlayerFromServer(); return; }
   try {
@@ -177,17 +236,18 @@ document.getElementById('connectPhantom').addEventListener('click', async () => 
 async function syncPlayerFromServer() {
   if (!wallet) return;
   try {
-    const res = await fetch(`/player/${wallet.publicKey.toBase58()}`);
+    const res = await mockFetch(`/player/${wallet.publicKey.toBase58()}`);
     if (!res.ok) throw 0;
     const d = await res.json();
     Object.assign(player, d); player.claimed = new Set(d.claimed||[]);
+    player.gear = d.gear || [];
     updateUI(); saveState();
     setStatus(`Synced – Lvl ${player.lvl} | ${player.caps} CAPS`);
-  } catch(e) { setStatus('Server offline – local save active'); }
+  } catch(e) { setStatus('Local mode active'); }
 }
-function afterSuccessfulClaim(){ saveState(); updateUI(); syncPlayerFromServer(); }
+function afterSuccessfulClaim(){ saveState(); updateUI(); }
 
-// TABS + DRAWER — FULLY WORKING
+// Tabs + drawer
 const tabs = document.querySelectorAll('.tab');
 const drawer = document.getElementById('sidePanel');
 const panelTitle = document.getElementById('panelTitle');
@@ -214,45 +274,43 @@ function renderStats() {
     <div class="list-item"><div><strong>LEVEL</strong></div><div class="muted">${player.lvl}</div></div>
     <div class="list-item"><div><strong>HP</strong></div><div class="muted">${player.hp}/${player.maxHp}</div></div>
     <div class="list-item"><div><strong>CAPS</strong></div><div class="muted">${player.caps}</div></div>
-    <div class="list-item"><div><strong>CLAIMED</strong></div><div class="muted">${player.claimed.size}</div></div>
+    <div class="list-item"><div><strong>CLAIMED</strong></div><div class="muted">${player.claimed.size}/${LOCATIONS.length}</div></div>
+    <div class="list-item"><div><strong>GEAR</strong></div><div class="muted">${player.gear.length}</div></div>
   `;
 }
 function renderItems() {
   if (!player.gear?.length) {
-    panelBody.innerHTML = `<div class="list-item"><strong>No gear yet</strong><div class="muted">Claim POIs to loot</div></div>`;
+    panelBody.innerHTML = `<div class="list-item"><strong>No gear yet</strong><div class="muted">Claim POIs to loot Fizz Caps</div></div>`;
     return;
   }
   panelBody.innerHTML = player.gear.map(g => 
-    `<div class="list-item"><div><strong>${g.name||'Unknown Item'}</strong><div class="muted">${g.rarity||'common'}</div></div><div class="muted">x${g.qty||1}</div></div>`
+    `<div class="list-item"><div><strong>${g.name}</strong><div class="muted">${g.rarity}</div></div><div class="muted">x${g.qty||1}</div></div>`
   ).join('');
 }
 function renderQuests() {
   panelBody.innerHTML = `
     <div class="list-item"><div><strong>Find Vault 77 Key</strong><div class="muted-small">Legend says it's hidden in the Mojave...</div></div><div class="muted">ACTIVE</div></div>
     <div class="list-item"><div><strong>Repair Helios One</strong><div class="muted-small">Collect 3 solar cells from the wasteland</div></div><div class="muted">AVAILABLE</div></div>
+    <div class="list-item"><div><strong>Claim All POIs</strong><div class="muted-small">Loot all 8 Fizz Caps</div></div><div class="muted">PROGRESS: ${player.claimed.size}/${LOCATIONS.length}</div></div>
   `;
 }
 
-// MAP + CLAIM
-async function loadAndInitMap() {
+// Map init - your exact working tiles
+function loadAndInitMap() {
   map = L.map('map').setView([36.1146,-115.1728],12);
   L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{maxZoom:20}).addTo(map);
-  try {
-    const res = await fetch(`${API_BASE}/locations`);
-    const locs = await res.json();
-    locs.forEach(loc => {
-      const color = loc.rarity==='legendary'?'#ffff00':loc.rarity==='epic'?'#ff6200':loc.rarity==='rare'?'#00ffff':'#00ff41';
-      const m = L.circleMarker([loc.lat, loc.lng], {radius:14,color:'#001100',weight:4,fillColor:color,fillOpacity:0.95})
-        .bindPopup(`<b style="color:#0ff">${loc.n}</b><br><span style="padding:4px 8px;border-radius:12px;background:${color};color:#000">${(loc.rarity||'common').toUpperCase()}</span><br>Level ${loc.lvl||1}`)
-        .on('click',()=>attemptClaim(loc)).addTo(map);
-      markers[loc.n] = m;
-      if (player.claimed.has(loc.n)) m.setStyle({fillColor:'#001a00',fillOpacity:0.6});
-    });
-  } catch(e) { setStatus('POI load failed'); }
+  LOCATIONS.forEach(loc => {
+    const color = loc.rarity==='legendary'?'#ffff00':loc.rarity==='epic'?'#ff6200':loc.rarity==='rare'?'#00ffff':'#00ff41';
+    const m = L.circleMarker([loc.lat, loc.lng], {radius:14,color:'#001100',weight:4,fillColor:color,fillOpacity:0.95})
+      .bindPopup(`<b style="color:#0ff">${loc.n}</b><br><span style="padding:4px 8px;border-radius:12px;background:${color};color:#000">${(loc.rarity||'common').toUpperCase()}</span><br>Level ${loc.lvl||1}`)
+      .on('click',()=>attemptClaim(loc)).addTo(map);
+    markers[loc.n] = m;
+    if (player.claimed.has(loc.n)) m.setStyle({fillColor:'#001a00',fillOpacity:0.6});
+  });
   if (playerLatLng) { playerMarker = L.circleMarker([playerLatLng.lat, playerLatLng.lng],{radius:8,color:'#00ff41',weight:3,fillColor:'#00ff41',fillOpacity:1}).addTo(map).bindPopup('You'); map.panTo(playerLatLng); }
 }
-loadAndInitMap();
 
+// Claim logic
 async function claimLoot(loc) {
   if (!wallet) return alert('Connect wallet!');
   if (player.claimed.has(loc.n)) return alert('Already looted!');
@@ -263,15 +321,16 @@ async function claimLoot(loc) {
 
   let sig = null;
   try {
-    const msg = `AtomicFizz claim:${loc.n}:${Date.now()}`;
+    const ts = Date.now();
+    const msg = `AtomicFizz claim:${loc.n}:${ts}`;
     const enc = new TextEncoder().encode(msg);
     const signed = await wallet.signMessage(enc,'utf8');
-    sig = btoa(String.fromCharCode(...signed.signature));
+    sig = btoa(String.fromCharCode(...signed));
   } catch(e) { return alert('Signature canceled'); }
 
   openMintModal(`Claiming ${loc.n}...`);
   try {
-    const r = await fetch(`${API_BASE}/claim-survival`, {method:'POST',headers:{'Content-Type':'application/json'},
+    const r = await mockFetch(`${API_BASE}/claim-survival`, {method:'POST',headers:{'Content-Type':'application/json'},
       body: JSON.stringify({wallet:wallet.publicKey.toBase58(), spot:loc.n, lat:playerLatLng.lat, lng:playerLatLng.lng, signature:sig})
     });
     const d = await r.json();
@@ -301,10 +360,17 @@ function openMintModal(msg,isError=false,data=null){
 }
 document.getElementById('mintCloseBtn').onclick = () => document.getElementById('mintModal').classList.remove('open');
 
-navigator.geolocation?.watchPosition(p=>{ const {latitude:lat,longitude:lng,accuracy}=p.coords; pushGpsSample(lat,lng,accuracy); },null,{enableHighAccuracy:true});
+// Init everything on load
+window.addEventListener('load', () => {
+  loadState();
+  updateUI();
+  loadAndInitMap();
+  navigator.geolocation?.watchPosition(p=>{ const {latitude:lat,longitude:lng,accuracy}=p.coords; pushGpsSample(lat,lng,accuracy); },null,{enableHighAccuracy:true});
+  setInterval(saveState,5000);
+});
+
 document.getElementById('centerBtn').onclick = () => playerLatLng && map.flyTo([playerLatLng.lat,playerLatLng.lng],16,{duration:0.6});
 document.getElementById('recenterMojave').onclick = () => map.flyTo([36.17,-115.14],8,{duration:0.6});
-setInterval(saveState,5000); updateUI();
 </script>
 </body>
 </html>
