@@ -1,5 +1,6 @@
-﻿// server.js - Atomic Fizz Caps Backend (FULLY UPDATED)
-// December 2025 - Loot-finding + CAPS SHOP + NFT BURN FEE (1% to Dev Wallet)
+﻿// server.js - Atomic Fizz Caps Backend (FULLY UPDATED & CLEANED)
+// December 2025 - Loot-finding + CAPS SHOP + NFT BURN FEE (1% to Dev Wallet) + Quests
+
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
@@ -30,7 +31,6 @@ const { Metaplex, keypairIdentity } = require('@metaplex-foundation/js');
 const {
     SOLANA_RPC,
     TOKEN_MINT,
-    MINT_AUTHORITY_SECRET,
     GAME_VAULT_SECRET,
     DEV_WALLET_SECRET,
     PORT,
@@ -45,12 +45,6 @@ if (!SOLANA_RPC || !TOKEN_MINT || !GAME_VAULT_SECRET || !DEV_WALLET_SECRET || !R
 
 const connection = new Connection(SOLANA_RPC, 'confirmed');
 const MINT_PUBKEY = new PublicKey(TOKEN_MINT);
-
-let AUTHORITY;
-try {
-    const secret = JSON.parse(MINT_AUTHORITY_SECRET || 'null');
-    if (secret) AUTHORITY = Keypair.fromSecretKey(Uint8Array.from(secret));
-} catch (e) { console.warn('No MINT_AUTHORITY - NFT minting disabled'); }
 
 let GAME_VAULT;
 try {
@@ -69,7 +63,6 @@ try {
 }
 
 const metaplex = Metaplex.make(connection);
-if (AUTHORITY) metaplex.use(keypairIdentity(AUTHORITY));
 
 const COOLDOWN = Number(COOLDOWN_SECONDS || 60);
 const redis = new Redis(REDIS_URL);
@@ -105,12 +98,22 @@ function verifySolanaSignature(message, signatureBase58, pubkeyBase58) {
 // --- Load data ---
 const DATA_DIR = path.join(process.cwd(), 'data');
 const LOCATIONS = safeJsonRead(path.join(DATA_DIR, 'locations.json'));
+const QUESTS = safeJsonRead(path.join(DATA_DIR, 'quests.json'));  // New: quests.json
 const MINTABLES = safeJsonRead(path.join(DATA_DIR, 'mintables.json'));
 
 // --- Express setup ---
 const app = express();
 app.use(morgan('combined'));
-app.use(helmet({ contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", 'https://unpkg.com'], imgSrc: ["'self'", 'data:', 'https:'], connectSrc: ["'self'", SOLANA_RPC] } } }));
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", 'https://unpkg.com'],
+            imgSrc: ["'self'", 'data:', 'https:'],
+            connectSrc: ["'self'", SOLANA_RPC]
+        }
+    }
+}));
 app.use(cors());
 app.use(express.json({ limit: '100kb' }));
 
@@ -120,9 +123,26 @@ const ipLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 const actionLimiter = rateLimit({ windowMs: 60_000, max: 20 });
 
 // --- Endpoints ---
+app.get('/', (req, res) => res.json({ status: 'Atomic Fizz live ☢️', timestamp: new Date().toISOString() }));
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/locations', (req, res) => { res.setHeader('Cache-Control', 'public, max-age=86400'); res.json(LOCATIONS); });
-app.get('/mintables', (req, res) => { res.setHeader('Cache-Control', 'public, max-age=86400'); res.json(MINTABLES); });
+
+app.get('/locations', (req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.json(LOCATIONS);
+});
+
+app.get('/quests', (req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.json(QUESTS.length ? QUESTS : [
+        { title: "Find Vault 77 Key", desc: "Legend says it's hidden in the Mojave...", status: "ACTIVE" },
+        { title: "Scavenge 10 Locations", desc: "Claim 10 POIs to prove your survival skills", status: "AVAILABLE" }
+    ]);
+});
+
+app.get('/mintables', (req, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.json(MINTABLES);
+});
 
 app.get('/player/:addr', async (req, res) => {
     const { addr } = req.params;
@@ -132,7 +152,7 @@ app.get('/player/:addr', async (req, res) => {
     res.json(data ? JSON.parse(data) : { lvl: 1, hp: 100, caps: 0, gear: [], found: [], listed: [] });
 });
 
-// Find loot (transfers from GAME_VAULT)
+// Find loot - transfers CAPS from vault
 app.post('/find-loot', ipLimiter, actionLimiter, [
     body('wallet').exists().isString(),
     body('spot').exists().isString(),
@@ -205,40 +225,7 @@ app.post('/find-loot', ipLimiter, actionLimiter, [
     }
 });
 
-// Mint item
-app.post('/mint-item', ipLimiter, actionLimiter, [
-    body('wallet').exists().isString(),
-    body('itemId').exists().isString()
-], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-
-    const { wallet, itemId } = req.body;
-    const item = MINTABLES.find(m => m.id === itemId);
-    if (!item) return res.status(404).json({ error: 'Item not found' });
-
-    try {
-        const metadataUri = item.uri || "https://arweave.net/DEFAULT";
-        const { nft } = await metaplex.nfts().create({
-            uri: metadataUri,
-            name: item.name,
-            sellerFeeBasisPoints: 500,
-            symbol: "AFC",
-            tokenOwner: new PublicKey(wallet)
-        });
-
-        res.json({
-            success: true,
-            nft: nft.address.toBase58(),
-            message: `Minted ${item.name}!`
-        });
-    } catch (e) {
-        console.error('NFT mint error:', e);
-        res.status(500).json({ error: 'NFT mint failed' });
-    }
-});
-
-// Shop endpoints (as before)
+// === CAPS SHOP ===
 app.post('/shop/list', ipLimiter, actionLimiter, [
     body('wallet').exists().isString(),
     body('nftAddress').exists().isString(),
@@ -303,7 +290,7 @@ app.post('/shop/buy', ipLimiter, actionLimiter, [
     try {
         const decimals = 6;
         const fullAmount = BigInt(listing.price) * BigInt(10 ** decimals);
-        const burnAmount = fullAmount / BigInt(100);
+        const burnAmount = fullAmount / BigInt(100); // 1%
         const sellerAmount = fullAmount - burnAmount;
 
         const buyerATA = await getOrCreateAssociatedTokenAccount(connection, buyerPk, MINT_PUBKEY, buyerPk);
@@ -339,8 +326,9 @@ app.post('/shop/buy', ipLimiter, actionLimiter, [
             partialTx: serialized,
             burnAmount: Number(burnAmount) / 10 ** decimals,
             sellerGets: Number(sellerAmount) / 10 ** decimals,
-            message: `Bought "${listing.name}"! 1% (${Number(burnAmount) / 10 ** decimals} CAPS) to dev fund. Get seller to approve NFT transfer.`
+            message: `Bought "${listing.name}"! 1% sent to dev fund. Seller must approve NFT transfer.`
         });
+
     } catch (err) {
         console.error('Buy error:', err);
         res.status(500).json({ error: 'Transaction failed' });
@@ -369,4 +357,10 @@ app.use((req, res) => res.status(404).json({ error: 'Not found' }));
 app.use((err, req, res, next) => { console.error(err); res.status(500).json({ error: 'Server error' }); });
 
 const port = Number(PORT || 3000);
-app.listen(port, () => console.log(`Atomic Fizz running on port ${port}`));
+app.listen(port, () => {
+    console.log(`Atomic Fizz server running on port ${port}`);
+    console.log(`RPC: ${SOLANA_RPC}`);
+    console.log(`Token: ${TOKEN_MINT}`);
+    console.log(`Vault: ${GAME_VAULT.publicKey.toBase58()}`);
+    console.log(`Dev fund: ${DEV_WALLET.publicKey.toBase58()}`);
+});
