@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <!-- Vercel Speed Insights - CDN script for monitoring performance metrics -->
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0 }
         html, body { height: 100%; background: #000; font-family: VT323,monospace; color: #00ff41 }
@@ -283,5 +285,8 @@
         initMap();
         updateUI();
     </script>
+
+    <!-- Initialize Speed Insights monitoring (client-side only) -->
+    <script src="/speed-insights.js"></script>
 </body>
 </html>

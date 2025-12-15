@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.pnpm/
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.turbo/
+
+# Cache and temporary files
+.cache/
+.parcel-cache/
+.vercel/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
