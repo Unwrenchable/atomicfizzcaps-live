@@ -18,9 +18,8 @@
     </div>
 
     <script>
-        // Pass HF key safely from main page or env – fallback to empty
-        const HF_API_KEY = new URLSearchParams(window.location.search).get('hf') || '';
-        window.HF_API_KEY = HF_API_KEY;
+        const urlParams = new URLSearchParams(window.location.search);
+        window.HF_API_KEY = urlParams.get('key') || '';
     </script>
     <script src="/js/overseer.js"></script>
 </body>
