@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>OVERSEER TERMINAL • VAULT 77</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/terminal.css" />
+  <meta charset="utf-8" />
+  <title>TERMINAL // RESTRICTED ACCESS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/terminal.css"> <!-- Your new CSS file -->
 </head>
 <body>
-    <div class="terminal-screen crt">
-        <h1>OVERSEER TERMINAL</h1>
-        <div id="chat"></div>
-        <div id="inputArea">
-            <input type="text" id="input" placeholder="Transmit message..." autocomplete="off" />
-            <button id="send">SEND</button>
-        </div>
+  <a href="/" class="back">← RETURN TO GAME</a>
+  
+  <div class="header">
+    <h1>RESTRICTED TERMINAL</h1>
+    <div class="sub">SIGNAL STRENGTH: WEAK</div>
+  </div>
+  
+  <div id="terminal">
+    <div id="chat"></div>
+    <div id="inputRow">
+      <input id="input" type="text" placeholder="> Type message..." autocomplete="off" autofocus>
+      <button id="send">SEND</button>
     </div>
+  </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        window.HF_API_KEY = urlParams.get('key') || '';
-    </script>
-    <script src="/js/overseer.js"></script>
+  <script src="js/overseer.js"></script>
 </body>
 </html>
