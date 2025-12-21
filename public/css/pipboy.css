@@ -1,51 +1,95 @@
-/* FULL PERFECT PIP-BOY CSS – ORIGINAL BASE + ENHANCED CRT MAP */
+/* FINAL PERFECT PIP-BOY STYLES – BRIGHT MAP + FULL CRT IMMERSION */
 
 * { box-sizing:border-box;margin:0;padding:0 }
-html,body { height:100%;background:#000;font-family:VT323,monospace;color:#00ff41;overflow:hidden }
+
+html,body { height:100%;background:#000;font-family:'VT323',monospace;color:#00ff41;overflow:hidden }
+
 body { background:radial-gradient(circle at center,#002200,#000) }
+
 .pipboy { position:fixed;inset:0;padding:12px;background:#001100;box-shadow:0 0 160px #00ff41 }
+
 .panel { position:absolute;inset:12px;background:#000;border-radius:14px;padding:14px;overflow:hidden;box-shadow:inset 0 0 80px #003300,0 0 80px rgba(0,255,65,0.18) }
+
 h1 { font-size:2.6rem;letter-spacing:8px;background:linear-gradient(90deg,#00ff41,#66ff99);-webkit-background-clip:text;color:transparent;margin-bottom:6px }
+
 .sub { opacity:0.6;letter-spacing:6px;margin-bottom:12px }
+
 .header-row { display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap }
+
 .controls { display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center }
+
 .btn,.wallet-btn { background:#001100;color:#00ff41;border:2px solid #00ff41;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:bold;transition:background .3s }
+
 .btn:hover,.wallet-btn:hover { background:#002200 }
+
 .wallet-btn { background:#002200 }
+
 #status { color:#ff66aa;font-size:0.95rem;text-align:center;margin-top:8px;transition:color .5s }
+
 .status-good { color:#66ff99 }
+
 .status-bad { color:#ff6666 }
+
 .pip-status { display:flex;align-items:center;justify-content:space-between;margin:10px 0;padding:6px;background:#001100;border:2px solid #00ff41;border-radius:8px }
+
 .pip-lvl,.pip-caps { font-size:1.1rem;opacity:0.9 }
+
 .pip-hp-container { position:relative;flex:1;height:28px;background:#000;border:2px solid #00ff41;border-radius:8px;overflow:hidden;margin:0 12px;box-shadow:inset 0 0 15px #003300 }
+
 .pip-hp-fill { position:absolute;left:0;top:0;height:100%;width:100%;background:#00ff41;transition:width .6s ease }
+
 .pip-rad-fill { position:absolute;right:0;top:0;height:100%;width:0%;background:#ff0033;opacity:.7;transition:width .6s ease }
+
 .pip-hp-text { position:absolute;width:100%;text-align:center;line-height:28px;font-size:1rem;color:#fff;text-shadow:0 0 8px #000;z-index:1 }
+
+.pip-xp-container { position:relative;height:8px;background:#001100;border:1px solid #00ff41;border-radius:4px;margin-top:4px;overflow:hidden }
+
+.pip-xp-fill { position:absolute;left:0;top:0;height:100%;width:0%;background:#00ffff;transition:width 1.2s ease }
+
 .pip-claimed { text-align:center;font-size:.95rem;margin-top:4px;opacity:.7 }
+
 .tabs { display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center }
+
 .tab { padding:8px 12px;border-radius:8px;background:rgba(0,0,0,.25);border:1px solid rgba(0,255,65,.06);cursor:pointer;font-size:.95rem;transition:background .3s }
+
 .tab.active,.tab:hover { background:#002200;border-color:#00ff41 }
+
 .terminal { position:absolute;right:0;left:0;bottom:0;width:100%;max-height:70%;background:rgba(0,17,0,.96);border:2px solid #00ff41;border-radius:14px 14px 0 0;padding:12px;overflow:auto;z-index:9999;display:none;transition:transform .4s ease }
+
 .terminal.open { display:block;transform:translateY(0) }
+
 .list-item { padding:8px 10px;border-bottom:1px dashed rgba(0,255,65,.06);display:flex;justify-content:space-between;align-items:center }
+
 .muted { opacity:.7 }
+
 .muted-small { font-size:.85rem;opacity:.8 }
+
 .gps-badge { position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,.8);border:2px solid #00ff41;padding:8px 12px;border-radius:10px;display:flex;gap:8px;align-items:center;z-index:1200;font-size:.9rem }
+
 .acc-dot { width:12px;height:12px;border-radius:50%;background:#ff6666;box-shadow:0 0 8px rgba(255,102,102,.2);animation:pulseRed 1.5s infinite }
+
 .acc-green { background:#66ff99;box-shadow:0 0 8px rgba(102,255,153,.6);animation:none }
+
 .acc-amber { background:#ffcc66;box-shadow:0 0 8px rgba(255,204,102,.6);animation:none }
+
 @keyframes pulseRed { 0%,100%{box-shadow:0 0 8px rgba(255,102,102,.2)}50%{box-shadow:0 0 20px rgba(255,102,102,.8)} }
+
 #requestGpsBtn { position:absolute;left:18px;bottom:80px;z-index:1200;padding:8px 12px;font-size:.9rem;background:#002200;border:2px solid #ff6666;border-radius:8px;cursor:pointer;transition:background .3s }
+
 #requestGpsBtn:hover { background:#330000 }
-@media(max-width:768px){ /* your mobile rules */ }
+
 .leaflet-control-container .leaflet-control-zoom,.leaflet-control-attribution{display:none!important}
-::-webkit-scrollbar{ /* your scrollbar rules */ }
+
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#001100;border-radius:10px}
+::-webkit-scrollbar-thumb{background:#00ff41;border:2px solid #003300;border-radius:10px;box-shadow:0 0 8px rgba(0,255,65,0.6)}
+::-webkit-scrollbar-thumb:hover{background:#66ff99;box-shadow:0 0 12px rgba(0,255,65,0.8)}
 *{scrollbar-width:thin;scrollbar-color:#00ff41 #001100}
 
-/* ENHANCED MAP – BRIGHT CYAN HIGH-CONTRAST + FULL CRT */
+/* PERFECT MAP – TALLER + BRIGHT CYAN HIGH-CONTRAST + CRT EFFECTS */
 #mapWrap {
   position: relative;
-  height: 56vh; /* Taller like screenshot */
+  height: 56vh;
   overflow: hidden;
   border-radius: 16px;
   border: 2px solid rgba(0,255,65,0.1);
@@ -61,14 +105,33 @@ h1 { font-size:2.6rem;letter-spacing:8px;background:linear-gradient(90deg,#00ff4
   opacity: 0.98;
 }
 
-#map::before { /* scanlines */ content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); pointer-events: none; z-index: 1001; opacity: 0.4; animation: slow-scan 12s linear infinite; border-radius: 16px; }
+#map::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+  pointer-events: none; z-index: 1001; opacity: 0.4;
+  animation: slow-scan 12s linear infinite; border-radius: 16px;
+}
+
 @keyframes slow-scan { 0% { background-position: 0 0; } 100% { background-position: 0 4px; } }
 
-#mapWrap::after { /* grid */ content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,255,65,0.04) 1px, transparent 1px), linear-gradient(0deg, rgba(0,255,65,0.04) 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 1002; opacity: 0.25; border-radius: 16px; }
+#mapWrap::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,255,65,0.04) 1px, transparent 1px), linear-gradient(0deg, rgba(0,255,65,0.04) 1px, transparent 1px);
+  background-size: 50px 50px; pointer-events: none; z-index: 1002; opacity: 0.25; border-radius: 16px;
+}
 
-.static-noise { /* noise */ position: absolute; inset: 0; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="5"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/></filter><rect width="100" height="100" filter="url(#n)" opacity="0.2"/></svg>') repeat; pointer-events: none; z-index: 1003; opacity: 0.25; animation: noise-flicker 0.15s steps(6) infinite; border-radius: 16px; }
+.static-noise {
+  position: absolute; inset: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="5"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/></filter><rect width="100" height="100" filter="url(#n)" opacity="0.2"/></svg>') repeat;
+  pointer-events: none; z-index: 1003; opacity: 0.25;
+  animation: noise-flicker 0.15s steps(6) infinite; border-radius: 16px;
+}
+
 @keyframes noise-flicker { 0% { opacity: 0.22; } 100% { opacity: 0.28; } }
 
-@keyframes gentle-glow { 0% { box-shadow: inset 0 0 80px #003300, 0 0 60px rgba(0,255,65,0.4); } 100% { box-shadow: inset 0 0 100px #004400, 0 0 90px rgba(0,255,65,0.6); } }
+@keyframes gentle-glow {
+  0% { box-shadow: inset 0 0 80px #003300, 0 0 60px rgba(0,255,65,0.4); }
+  100% { box-shadow: inset 0 0 100px #004400, 0 0 90px rgba(0,255,65,0.6); }
+}
 
 .leaflet-container { border-radius: 16px; overflow: hidden; }
