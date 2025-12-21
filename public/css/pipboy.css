@@ -1,4 +1,4 @@
-/* === ULTIMATE COOL PIP-BOY CSS – BRIGHT GREEN MAP, NO DARK HALO === */
+/* === FULL EPIC PIP-BOY CSS – RESTORED CRT IMMERSION === */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,24 +32,9 @@ body {
   box-shadow: inset 0 0 80px #003300, 0 0 80px rgba(0,255,65,0.18);
 }
 
-h1 {
-  font-size: 2.6rem;
-  letter-spacing: 8px;
-  background: linear-gradient(90deg, #00ff41, #66ff99);
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 6px;
-}
+/* Keep all your existing styles for h1, .sub, buttons, #status, HP bars, tabs, terminal, modals, gps-badge, shop-buy-btn, scrollbars, mobile tweaks, etc. */
 
-.sub {
-  opacity: 0.6;
-  letter-spacing: 6px;
-  margin-bottom: 12px;
-}
-
-/* Your existing styles for .header-row, .controls, .btn, #status, .pip-status, HP bars, .pip-claimed, .tabs, .terminal, modals, .gps-badge, .acc-dot, #requestGpsBtn, scrollbars, etc. — keep them all unchanged */
-
-/* COOL MAP – Bright Monochrome Green + CRT Effects (NO DARK HALO) */
+/* RESTORED FULL CRT MAP MAGIC */
 #mapWrap {
   position: relative;
   height: 42vh;
@@ -67,13 +52,13 @@ h1 {
   background: #001100 !important;
 }
 
-/* Crisp Bright Green Filter (replaces weak invert) */
+/* Bright Crisp Monochrome Green (replaces old invert) */
 .leaflet-tile-pane {
   filter: brightness(1.5) contrast(2.1) sepia(0.2) hue-rotate(90deg) saturate(3.5) grayscale(0.1);
   opacity: 0.97;
 }
 
-/* CRT Scanlines */
+/* Scrolling CRT Scanlines */
 #map::before {
   content: '';
   position: absolute;
@@ -105,7 +90,7 @@ h1 {
   border-radius: 16px;
 }
 
-/* Static Noise (uses your HTML div) */
+/* Animated Static Noise (your HTML already has the div) */
 .static-noise {
   position: absolute;
   inset: 0;
@@ -127,15 +112,10 @@ h1 {
   100% { box-shadow: inset 0 0 100px #004400, 0 0 75px rgba(0,255,65,0.5); }
 }
 
-/* Rounded Screen Edges */
+/* Soft Rounded Screen Edges */
 .leaflet-container {
   border-radius: 16px;
   overflow: hidden;
   mask-image: radial-gradient(circle at center, black 88%, transparent 100%);
   -webkit-mask-image: radial-gradient(circle at center, black 88%, transparent 100%);
-}
-
-@media (max-width: 768px) {
-  /* Your existing mobile rules + boost filter */
-  .leaflet-tile-pane { filter: brightness(1.6) contrast(2.3) sepia(0.2) hue-rotate(90deg) saturate(4); }
 }
