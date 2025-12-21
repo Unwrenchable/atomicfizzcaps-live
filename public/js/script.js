@@ -371,6 +371,8 @@ async function renderShop() {
     `).join('') : '<div style="text-align:center;padding:20px">Shop empty - check back later</div>';
 }
 
-// Init
-initMap();
-updateUI();
+window.addEventListener('load', () => {
+  initMap();
+  updateHPBar(); // Safe now
+  // Any other init
+});
