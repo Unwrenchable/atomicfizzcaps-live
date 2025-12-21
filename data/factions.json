@@ -1,0 +1,200 @@
+[
+  {
+    "id": "ncr",
+    "name": "New California Republic",
+    "shortName": "NCR",
+    "description": "Democratic republic expanding from California. Brings law, taxes, and bureaucracy to the Mojave. Struggles with overextension and corruption.",
+    "alignment": "Lawful",
+    "color": "#b8860b",
+    "emblem": "Bear",
+    "basePOIs": ["Camp McCarran", "Hoover Dam", "Mojave Outpost", "Camp Golf"],
+    "leader": "President Kimball",
+    "reputationLevels": ["Vilified", "Hated", "Disliked", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "+10% damage vs Legion",
+      "Idolized": "NCR Ranger Combat Armor mint"
+    },
+    "enemies": ["caesar_legion", "powder_gangers"],
+    "allies": ["followers_apocalypse", "boomers"]
+  },
+  {
+    "id": "caesar_legion",
+    "name": "Caesar's Legion",
+    "shortName": "Legion",
+    "description": "Totalitarian slaver army modeled after Roman Empire. Disciplined, brutal, and anti-tech. Seeks to conquer and 'civilize' the wasteland.",
+    "alignment": "Lawful Evil",
+    "color": "#8b0000",
+    "emblem": "Bull",
+    "basePOIs": ["Cottonwood Cove", "Fortification Hill", "Nelson"],
+    "leader": "Caesar",
+    "reputationLevels": ["Vilified", "Hated", "Mercy", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "+15% melee damage",
+      "Idolized": "Legion Centurion Armor mint"
+    },
+    "enemies": ["ncr", "followers_apocalypse", "boomers"],
+    "allies": ["white_glove_society"]
+  },
+  {
+    "id": "mr_house",
+    "name": "Mr. House",
+    "shortName": "House",
+    "description": "Pre-war genius preserved in life-support. Controls New Vegas via Securitrons. Visionary autocrat who sees himself as the Mojave's savior.",
+    "alignment": "Neutral",
+    "color": "#4a4a4a",
+    "emblem": "Securitron Face",
+    "basePOIs": ["Lucky 38", "The Strip", "The Tops", "Ultra-Luxe", "Gomorrah"],
+    "leader": "Robert House",
+    "reputationLevels": ["Vilified", "Shunned", "Mixed", "Neutral", "Accepted", "Smiled Upon", "Idolized"],
+    "perks": {
+      "Smiled Upon": "Free Strip access + chips",
+      "Idolized": "Platinum Chip upgrade (Securitron Mk II)"
+    },
+    "enemies": ["boomers", "powder_gangers"],
+    "allies": ["three_families", "white_glove_society"]
+  },
+  {
+    "id": "brotherhood_steel",
+    "name": "Brotherhood of Steel",
+    "shortName": "BoS",
+    "description": "Techno-religious knights hoarding pre-war tech. Isolated, xenophobic, but unmatched in power armor. Hidden in Mojave bunkers.",
+    "alignment": "Lawful Neutral",
+    "color": "#4682b4",
+    "emblem": "Sword & Gears",
+    "basePOIs": ["Hidden Valley Bunker", "HELIOS One", "REPCONN HQ"],
+    "leader": "Elder McNamara",
+    "reputationLevels": ["Vilified", "Hated", "Disliked", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Access to energy weapons cache",
+      "Idolized": "T-51b Power Armor mint"
+    },
+    "enemies": ["ncr", "caesar_legion"],
+    "allies": ["followers_apocalypse"]
+  },
+  {
+    "id": "followers_apocalypse",
+    "name": "Followers of the Apocalypse",
+    "shortName": "Followers",
+    "description": "Humanitarian scholars sharing knowledge and medicine. Pacifist, anti-slavery, pro-science. Often caught in crossfire.",
+    "alignment": "Good",
+    "color": "#32cd32",
+    "emblem": "Ankh",
+    "basePOIs": ["Old Mormon Fort", "Aerotech Office Park", "Westside"],
+    "leader": "Julie Farkas",
+    "reputationLevels": ["Vilified", "Shunned", "Mixed", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Free medical treatment + chems",
+      "Idolized": "Doctor's Bag NFT + healing perk"
+    },
+    "enemies": ["caesar_legion"],
+    "allies": ["ncr", "brotherhood_steel"]
+  },
+  {
+    "id": "great_khans",
+    "name": "Great Khans",
+    "shortName": "Khans",
+    "description": "Raider tribe with proud warrior heritage. Drug runners and survivors. Seeking new destiny after defeats.",
+    "alignment": "Chaotic",
+    "color": "#8b4513",
+    "emblem": "Mongol Helmet",
+    "basePOIs": ["Red Rock Canyon", "Red Rock Drug Lab"],
+    "leader": "Papa Khan",
+    "reputationLevels": ["Vilified", "Hated", "Mixed", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Khan Trick Armor",
+      "Idolized": "Drug crafting bonus"
+    },
+    "enemies": ["ncr"],
+    "allies": ["powder_gangers"]
+  },
+  {
+    "id": "boomers",
+    "name": "Boomers",
+    "shortName": "Boomers",
+    "description": "Reclusive artillery tribe at Nellis AFB. Worship bombs and planes. Xenophobic but unmatched in firepower.",
+    "alignment": "Neutral",
+    "color": "#ff8c00",
+    "emblem": "B-29 Bomber",
+    "basePOIs": ["Nellis AFB", "Lake Mead"],
+    "leader": "Pearl",
+    "reputationLevels": ["Vilified", "Hated", "Shunned", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Howitzer support call",
+      "Idolized": "Boomer Flightsuit NFT"
+    },
+    "enemies": ["caesar_legion"],
+    "allies": ["ncr"]
+  },
+  {
+    "id": "powder_gangers",
+    "name": "Powder Gangers",
+    "shortName": "Gangers",
+    "description": "Escaped convicts using dynamite. Terrorize highways and small towns. Disorganized but dangerous.",
+    "alignment": "Chaotic Evil",
+    "color": "#696969",
+    "emblem": "Dynamite",
+    "basePOIs": ["NCR Correctional Facility", "Vault 19", "Primm"],
+    "leader": "Eddie",
+    "reputationLevels": ["Vilified", "Hated", "Mixed", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Dynamite discount",
+      "Idolized": "Explosives expert perk"
+    },
+    "enemies": ["ncr"],
+    "allies": ["great_khans"]
+  },
+  {
+    "id": "three_families",
+    "name": "Three Families",
+    "shortName": "Families",
+    "description": "Casino tribes controlling the Strip under House: Omertas (mobsters), White Glove (elitists), Chairmen (cool cats).",
+    "alignment": "Neutral",
+    "color": "#daa520",
+    "emblem": "Playing Cards",
+    "basePOIs": ["Gomorrah", "Ultra-Luxe", "The Tops"],
+    "leader": "Various (Benny, Marjorie, Swank)",
+    "reputationLevels": ["Shunned", "Mixed", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Strip VIP access",
+      "Idolized": "Unique casino weapon mint"
+    },
+    "enemies": [],
+    "allies": ["mr_house"]
+  },
+  {
+    "id": "kings",
+    "name": "Kings",
+    "shortName": "Kings",
+    "description": "Elvis-impersonating gang ruling Freeside. Protect locals but clash with NCR expansion.",
+    "alignment": "Chaotic Good",
+    "color": "#1e90ff",
+    "emblem": "Pompadour",
+    "basePOIs": ["King's School of Impersonation", "Freeside"],
+    "leader": "The King",
+    "reputationLevels": ["Vilified", "Hated", "Mixed", "Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Freeside safe passage",
+      "Idolized": "Jailhouse Rocker outfit"
+    },
+    "enemies": ["ncr"],
+    "allies": ["followers_apocalypse"]
+  },
+  {
+    "id": "independent",
+    "name": "Independent Vegas",
+    "shortName": "Independent",
+    "description": "No major faction controls New Vegas. Supported by Yes Man and player choices. Anarchy or freedom?",
+    "alignment": "Chaotic Neutral",
+    "color": "#9370db",
+    "emblem": "Yes Man Face",
+    "basePOIs": ["Lucky 38", "The Strip"],
+    "leader": "You (the player)",
+    "reputationLevels": ["Neutral", "Accepted", "Liked", "Idolized"],
+    "perks": {
+      "Liked": "Securitron escort",
+      "Idolized": "Upgraded Securitron army"
+    },
+    "enemies": ["ncr", "caesar_legion", "mr_house"],
+    "allies": ["boomers", "kings"]
+  }
+]

@@ -1,0 +1,243 @@
+[
+  { "id": "scrap_metal", "name": "Scrap Metal", "rarity": "common", "spawnPOI": "Goodsprings Saloon", "levelRequirement": 1, "type": "junk", "priceCAPS": 10 },
+  { "id": "rusted_knife", "name": "Rusted Knife", "rarity": "common", "spawnPOI": "Nipton Trading Post", "levelRequirement": 3, "type": "weapon", "priceCAPS": 45,
+    "variants": [
+      { "modifier": "Sharpened", "effect": "Boosts damage slightly", "rarityBoost": "rare" },
+      { "modifier": "Spiked", "effect": "Adds bleed damage", "rarityBoost": "rare" }
+    ]
+  },
+  { "id": "dirty_water", "name": "Dirty Water", "rarity": "common", "spawnPOI": "Vault 101", "levelRequirement": 1, "type": "consumable", "priceCAPS": 15 },
+  { "id": "cooked_gecko_meat", "name": "Cooked Gecko Meat", "rarity": "common", "spawnPOI": "Freeside Market", "levelRequirement": 2, "type": "consumable", "priceCAPS": 25 },
+  { "id": "pipe_pistol", "name": "Pipe Pistol", "rarity": "common", "spawnPOI": "Bonnie Springs Ranch", "levelRequirement": 4, "type": "weapon", "priceCAPS": 65,
+    "variants": [
+      { "modifier": "Scoped", "effect": "Increases range", "rarityBoost": "rare" },
+      { "modifier": "Rusty", "effect": "Lower durability", "rarityBoost": "common" }
+    ]
+  },
+  { "id": "cowboy_hat", "name": "Cowboy Hat", "rarity": "common", "spawnPOI": "Shady Sands", "levelRequirement": 2, "type": "armor", "priceCAPS": 35 },
+  { "id": "vault_111_jumpsuit", "name": "Vault 111 Jumpsuit", "rarity": "common", "spawnPOI": "Vault 111", "levelRequirement": 1, "type": "armor", "priceCAPS": 40 },
+  { "id": "gecko_hide", "name": "Gecko Hide", "rarity": "common", "spawnPOI": "Red Rock Canyon", "levelRequirement": 3, "type": "junk", "priceCAPS": 20 },
+  { "id": "tin_can", "name": "Tin Can", "rarity": "common", "spawnPOI": "The Hub", "levelRequirement": 1, "type": "junk", "priceCAPS": 8 },
+  { "id": "rusted_revolver", "name": "Rusted Revolver", "rarity": "common", "spawnPOI": "Boulder City Hotel", "levelRequirement": 5, "type": "weapon", "priceCAPS": 70,
+    "variants": [
+      { "modifier": "Polished", "effect": "Boosts accuracy", "rarityBoost": "rare" },
+      { "modifier": "Spiked Grip", "effect": "Adds melee damage", "rarityBoost": "rare" }
+    ]
+  },
+  { "id": "leather_jacket", "name": "Leather Jacket", "rarity": "common", "spawnPOI": "Goodsprings Saloon", "levelRequirement": 1, "type": "armor", "priceCAPS": 35 },
+  { "id": "dust_mask", "name": "Dust Mask", "rarity": "common", "spawnPOI": "Nipton Trading Post", "levelRequirement": 3, "type": "armor", "priceCAPS": 25 },
+  { "id": "scavenger_vest", "name": "Scavenger Vest", "rarity": "common", "spawnPOI": "Shady Sands", "levelRequirement": 2, "type": "armor", "priceCAPS": 30 },
+  { "id": "cloth_robe", "name": "Tattered Cloth Robe", "rarity": "common", "spawnPOI": "Vault 111", "levelRequirement": 1, "type": "armor", "priceCAPS": 25 },
+  { "id": "makeshift_shield", "name": "Makeshift Shield", "rarity": "common", "spawnPOI": "Primm Rollercoaster", "levelRequirement": 2, "type": "armor", "priceCAPS": 40 },
+  { "id": "casino_chip", "name": "Lucky 38 Casino Chip", "rarity": "common", "spawnPOI": "Lucky 38", "levelRequirement": 1, "type": "cosmetic", "priceCAPS": 15 },
+  { "id": "rusted_spoon", "name": "Rusted Spoon", "rarity": "common", "spawnPOI": "Goodsprings Saloon", "levelRequirement": 1, "type": "junk", "priceCAPS": 5 },
+  { "id": "nuka_cap", "name": "Nuka-Cola Bottle Cap", "rarity": "common", "spawnPOI": "Nuka-World", "levelRequirement": 1, "type": "junk", "priceCAPS": 10 },
+  { "id": "rusted_wrench", "name": "Rusted Wrench", "rarity": "common", "spawnPOI": "Goodsprings Saloon", "levelRequirement": 1, "type": "junk", "priceCAPS": 12 },
+  { "id": "broken_toy", "name": "Broken Toy Car", "rarity": "common", "spawnPOI": "Freeside Market", "levelRequirement": 2, "type": "junk", "priceCAPS": 15 },
+  { "id": "old_magazine", "name": "Old Survivalist Magazine", "rarity": "common", "spawnPOI": "Vault 111", "levelRequirement": 1, "type": "lore", "priceCAPS": 20 },
+  { "id": "iguana_bits", "name": "Iguana Bits", "rarity": "common", "spawnPOI": "Freeside Market", "levelRequirement": 2, "type": "consumable", "priceCAPS": 18 },
+  { "id": "snack_cakes", "name": "Fancy Snack Cakes", "rarity": "common", "spawnPOI": "Diamond City", "levelRequirement": 15, "type": "consumable", "priceCAPS": 35 },
+  { "id": "sarsaparilla_bottle", "name": "Sarsaparilla Bottle", "rarity": "common", "spawnPOI": "New Vegas Strip", "levelRequirement": 10, "type": "consumable", "priceCAPS": 25 },
+  { "id": "cowboy_boots", "name": "Cowboy Boots", "rarity": "common", "spawnPOI": "Shady Sands", "levelRequirement": 2, "type": "armor", "priceCAPS": 40 },
+  { "id": "rusted_pan", "name": "Rusted Pan", "rarity": "common", "spawnPOI": "Goodsprings Saloon", "levelRequirement": 1, "type": "junk", "priceCAPS": 10 },
+  { "id": "tin_plate", "name": "Tin Plate", "rarity": "common", "spawnPOI": "The Hub", "levelRequirement": 1, "type": "junk", "priceCAPS": 10 },
+  { "id": "gecko_tail", "name": "Gecko Tail", "rarity": "common", "spawnPOI": "Red Rock Canyon", "levelRequirement": 3, "type": "consumable", "priceCAPS": 22 },
+  { "id": "cloth_gloves", "name": "Cloth Gloves", "rarity": "common", "spawnPOI": "Vault 111", "levelRequirement": 1, "type": "armor", "priceCAPS": 20 },
+  { "id": "dusty_book", "name": "Dusty Book", "rarity": "common", "spawnPOI": "Nipton Trading Post", "levelRequirement": 3, "type": "lore", "priceCAPS": 18 },
+
+  { "id": "stimpak", "name": "Stimpak", "rarity": "rare", "spawnPOI": "Novac Motel", "levelRequirement": 5, "type": "consumable", "priceCAPS": 180 },
+  { "id": "radaway", "name": "RadAway", "rarity": "rare", "spawnPOI": "Searchlight Church", "levelRequirement": 10, "type": "consumable", "priceCAPS": 220 },
+  { "id": "shotgun", "name": "12-Gauge Shotgun", "rarity": "rare", "spawnPOI": "Megaton", "levelRequirement": 8, "type": "weapon", "priceCAPS": 450,
+    "variants": [
+      { "modifier": "Sawed-Off", "effect": "Shorter range, higher damage", "rarityBoost": "rare" },
+      { "modifier": "Scoped", "effect": "Boosts accuracy", "rarityBoost": "epic" }
+    ]
+  },
+  { "id": "combat_armor", "name": "Combat Armor", "rarity": "rare", "spawnPOI": "Jacobstown", "levelRequirement": 20, "type": "armor", "priceCAPS": 600,
+    "variants": [
+      { "modifier": "Reinforced", "effect": "Extra durability", "rarityBoost": "epic" },
+      { "modifier": "Camouflaged", "effect": "Sneak bonus outdoors", "rarityBoost": "rare" }
+    ]
+  },
+  { "id": "service_rifle", "name": "Service Rifle", "rarity": "rare", "spawnPOI": "Vault 3", "levelRequirement": 15, "type": "weapon", "priceCAPS": 550,
+    "variants": [
+      { "modifier": "Scoped", "effect": "Increases range by 50%", "rarityBoost": "epic" },
+      { "modifier": "Spiked", "effect": "Adds melee damage", "rarityBoost": "rare" },
+      { "modifier": "Prototype", "effect": "Boosts damage but reduces durability", "rarityBoost": "epic" }
+    ]
+  },
+  { "id": "hunting_rifle", "name": "Hunting Rifle", "rarity": "rare", "spawnPOI": "McCarran Airport", "levelRequirement": 12, "type": "weapon", "priceCAPS": 500,
+    "variants": [
+      { "modifier": "Scoped", "effect": "Boosts accuracy", "rarityBoost": "rare" },
+      { "modifier": "Silenced", "effect": "Adds stealth bonus", "rarityBoost": "epic" }
+    ]
+  },
+  { "id": "frag_grenade", "name": "Frag Grenade", "rarity": "rare", "spawnPOI": "Rhyolite Ghost Town", "levelRequirement": 11, "type": "weapon", "priceCAPS": 300 },
+  { "id": "metal_armor", "name": "Metal Armor", "rarity": "rare", "spawnPOI": "Vault 19", "levelRequirement": 18, "type": "armor", "priceCAPS": 520 },
+  { "id": "sawed_off_shotgun", "name": "Sawed-Off Shotgun", "rarity": "rare", "spawnPOI": "Vault 21", "levelRequirement": 15, "type": "weapon", "priceCAPS": 400 },
+  { "id": "scout_carbine", "name": "Scout Carbine", "rarity": "rare", "spawnPOI": "Cottonwood Cove", "levelRequirement": 14, "type": "weapon", "priceCAPS": 480 },
+  { "id": "reinforced_vault_suit", "name": "Reinforced Vault Suit", "rarity": "rare", "spawnPOI": "Vault 13", "levelRequirement": 15, "type": "armor", "priceCAPS": 420 },
+  { "id": "searchlight_guard_uniform", "name": "Searchlight Guard Uniform", "rarity": "rare", "spawnPOI": "Searchlight Church", "levelRequirement": 10, "type": "armor", "priceCAPS": 350 },
+  { "id": "megaton_security_armor", "name": "Megaton Security Armor", "rarity": "rare", "spawnPOI": "Megaton", "levelRequirement": 8, "type": "armor", "priceCAPS": 380 },
+  { "id": "novac_patrol_vest", "name": "Novac Patrol Vest", "rarity": "rare", "spawnPOI": "Novac Motel", "levelRequirement": 5, "type": "armor", "priceCAPS": 320 },
+  { "id": "mcCarran_trooper_armor", "name": "McCarran Trooper Armor", "rarity": "rare", "spawnPOI": "McCarran Airport", "levelRequirement": 12, "type": "armor", "priceCAPS": 450 },
+  { "id": "vault_poster", "name": "Vault-Tec Safety Poster", "rarity": "rare", "spawnPOI": "Vault 13", "levelRequirement": 15, "type": "lore", "priceCAPS": 250 },
+  { "id": "gecko_skull", "name": "Gecko Skull", "rarity": "rare", "spawnPOI": "Red Rock Canyon", "levelRequirement": 8, "type": "trophy", "priceCAPS": 300 },
+  { "id": "doctor_bag", "name": "Doctor’s Bag", "rarity": "rare", "spawnPOI": "Megaton", "levelRequirement": 8, "type": "consumable", "priceCAPS": 260 },
+  { "id": "mutfruit", "name": "Mutfruit", "rarity": "rare", "spawnPOI": "Shady Sands", "levelRequirement": 8, "type": "consumable", "priceCAPS": 120 },
+  { "id": "healing_powder", "name": "Healing Powder", "rarity": "rare", "spawnPOI": "Red Rock Canyon", "levelRequirement": 8, "type": "consumable", "priceCAPS": 180 },
+  { "id": "raider_spike_armor", "name": "Raider Spike Armor", "rarity": "rare", "spawnPOI": "Cottonwood Cove", "levelRequirement": 14, "type": "armor", "priceCAPS": 520,
+    "variants": [
+      { "modifier": "Reinforced", "effect": "Extra durability", "rarityBoost": "epic" },
+      { "modifier": "Bloodied", "effect": "Adds intimidation bonus", "rarityBoost": "rare" }
+    ]
+  },
+  { "id": "vault3_jumpsuit", "name": "Vault 3 Jumpsuit", "rarity": "rare", "spawnPOI": "Vault 3", "levelRequirement": 15, "type": "armor", "priceCAPS": 380 },
+  { "id": "vault19_jumpsuit", "name": "Vault 19 Jumpsuit", "rarity": "rare", "spawnPOI": "Vault 19", "levelRequirement": 18, "type": "armor", "priceCAPS": 420 },
+  { "id": "farharbor_coat", "name": "Far Harbor Raincoat", "rarity": "rare", "spawnPOI": "Far Harbor", "levelRequirement": 33, "type": "armor", "priceCAPS": 650 },
+  { "id": "mariposa_patch", "name": "Mariposa Military Patch", "rarity": "rare", "spawnPOI": "Mariposa Base", "levelRequirement": 45, "type": "lore", "priceCAPS": 500 },
+  { "id": "diamond_city_ticket", "name": "Diamond City Baseball Ticket", "rarity": "rare", "spawnPOI": "Diamond City", "levelRequirement": 15, "type": "lore", "priceCAPS": 280 },
+  { "id": "newreno_chip", "name": "New Reno Poker Chip", "rarity": "rare", "spawnPOI": "New Reno", "levelRequirement": 28, "type": "cosmetic", "priceCAPS": 260 },
+  { "id": "casino_token", "name": "Lucky 38 Drink Token", "rarity": "rare", "spawnPOI": "Lucky 38", "levelRequirement": 15, "type": "cosmetic", "priceCAPS": 240 },
+  { "id": "poker_cards", "name": "New Reno Poker Cards", "rarity": "rare", "spawnPOI": "New Reno", "levelRequirement": 28, "type": "cosmetic", "priceCAPS": 260 },
+  { "id": "vault_pamphlet", "name": "Vault-Tec Pamphlet", "rarity": "rare", "spawnPOI": "Vault 13", "levelRequirement": 15, "type": "lore", "priceCAPS": 260 },
+
+  { "id": "laser_rifle", "name": "Laser Rifle", "rarity": "epic", "spawnPOI": "Helios One", "levelRequirement": 12, "type": "weapon", "priceCAPS": 2200,
+    "variants": [
+      { "modifier": "Scoped", "effect": "Boosts accuracy", "rarityBoost": "epic" },
+      { "modifier": "Overcharged", "effect": "Higher damage, lower durability", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "t51_power_armor", "name": "T-51 Power Armor", "rarity": "epic", "spawnPOI": "Vault 34", "levelRequirement": 20, "type": "armor", "priceCAPS": 3500,
+    "variants": [
+      { "modifier": "Reinforced", "effect": "Extra durability", "rarityBoost": "epic" },
+      { "modifier": "Stealth", "effect": "Sneak bonus", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "plasma_grenade", "name": "Plasma Grenade", "rarity": "epic", "spawnPOI": "Black Mountain", "levelRequirement": 20, "type": "weapon", "priceCAPS": 1800 },
+  { "id": "super_sledge", "name": "Super Sledge", "rarity": "epic", "spawnPOI": "Quarry Junction", "levelRequirement": 35, "type": "weapon", "priceCAPS": 2600,
+    "variants": [
+      { "modifier": "Heavy", "effect": "Boosts damage but slower swing", "rarityBoost": "epic" },
+      { "modifier": "Serrated", "effect": "Adds bleed damage", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "gauss_rifle", "name": "Gauss Rifle", "rarity": "epic", "spawnPOI": "Nellis Air Force Base", "levelRequirement": 25, "type": "weapon", "priceCAPS": 2800,
+    "variants": [
+      { "modifier": "Scoped", "effect": "Boosts accuracy", "rarityBoost": "epic" },
+      { "modifier": "Prototype", "effect": "Boosts damage but unstable", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "plasma_rifle", "name": "Plasma Rifle", "rarity": "epic", "spawnPOI": "REPCONN Test Site", "levelRequirement": 18, "type": "weapon", "priceCAPS": 2400 },
+  { "id": "riot_gear_elite", "name": "Elite Riot Gear", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 32, "type": "armor", "priceCAPS": 3200 },
+  { "id": "flamer", "name": "Flamer", "rarity": "epic", "spawnPOI": "Ultra-Luxe Casino", "levelRequirement": 20, "type": "weapon", "priceCAPS": 2300 },
+  { "id": "chainsaw", "name": "Chainsaw", "rarity": "epic", "spawnPOI": "Gomorrah Casino", "levelRequirement": 22, "type": "weapon", "priceCAPS": 2300 },
+  { "id": "marksman_carbine", "name": "Marksman Carbine", "rarity": "epic", "spawnPOI": "Mt Charleston", "levelRequirement": 16, "type": "weapon", "priceCAPS": 2100 },
+  { "id": "hazmat_suit", "name": "Hazmat Suit", "rarity": "epic", "spawnPOI": "REPCONN Test Site", "levelRequirement": 18, "type": "armor", "priceCAPS": 2000 },
+  { "id": "advanced_combat_armor", "name": "Advanced Combat Armor", "rarity": "epic", "spawnPOI": "Hoover Dam", "levelRequirement": 12, "type": "armor", "priceCAPS": 2800,
+    "variants": [
+      { "modifier": "Reinforced", "effect": "Adds +20 durability", "rarityBoost": "epic" },
+      { "modifier": "Irradiated", "effect": "Radiation resistance", "rarityBoost": "legendary" },
+      { "modifier": "Stealth", "effect": "Sneak bonus", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "casino_guard_uniform", "name": "Casino Guard Uniform", "rarity": "epic", "spawnPOI": "Lucky 38", "levelRequirement": 18, "type": "armor", "priceCAPS": 1900 },
+  { "id": "riot_shield", "name": "Riot Shield", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 20, "type": "armor", "priceCAPS": 2100 },
+  { "id": "reno_revolver", "name": "Reno Revolver", "rarity": "epic", "spawnPOI": "New Reno", "levelRequirement": 28, "type": "weapon", "priceCAPS": 2500 },
+  { "id": "gecko_proto_laser", "name": "Gecko Prototype Laser", "rarity": "epic", "spawnPOI": "Gecko Reactor", "levelRequirement": 25, "type": "weapon", "priceCAPS": 2600 },
+  { "id": "diamondcity_baseball_armor", "name": "Diamond City Baseball Armor", "rarity": "epic", "spawnPOI": "Diamond City", "levelRequirement": 15, "type": "armor", "priceCAPS": 2300 },
+  { "id": "experiment_log", "name": "Vault Experiment Log", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 32, "type": "lore", "priceCAPS": 1500 },
+  { "id": "gecko_reactor_core", "name": "Gecko Reactor Core Fragment", "rarity": "epic", "spawnPOI": "Gecko Reactor", "levelRequirement": 25, "type": "artifact", "priceCAPS": 2600 },
+  { "id": "riot_helmet", "name": "Riot Helmet", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 20, "type": "armor", "priceCAPS": 2000 },
+  { "id": "prototype_carbine", "name": "Prototype Carbine", "rarity": "epic", "spawnPOI": "Helios One", "levelRequirement": 22, "type": "weapon", "priceCAPS": 2600 },
+  { "id": "reinforced_metal_armor", "name": "Reinforced Metal Armor", "rarity": "epic", "spawnPOI": "Vault 19", "levelRequirement": 25, "type": "armor", "priceCAPS": 2600 },
+  { "id": "prototype_shotgun", "name": "Prototype Shotgun", "rarity": "epic", "spawnPOI": "Megaton", "levelRequirement": 20, "type": "weapon", "priceCAPS": 2500 },
+  { "id": "riot_gloves", "name": "Riot Gloves", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 20, "type": "armor", "priceCAPS": 1900 },
+  { "id": "prototype_plasma_rifle", "name": "Prototype Plasma Rifle", "rarity": "epic", "spawnPOI": "REPCONN Test Site", "levelRequirement": 22, "type": "weapon", "priceCAPS": 2700 },
+  { "id": "riot_boots", "name": "Riot Boots", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 20, "type": "armor", "priceCAPS": 1900 },
+  { "id": "prototype_gauss_rifle", "name": "Prototype Gauss Rifle", "rarity": "epic", "spawnPOI": "Nellis Air Force Base", "levelRequirement": 28, "type": "weapon", "priceCAPS": 2900 },
+  { "id": "hazmat_gloves", "name": "Hazmat Gloves", "rarity": "epic", "spawnPOI": "REPCONN Test Site", "levelRequirement": 18, "type": "armor", "priceCAPS": 1800 },
+  { "id": "hazmat_boots", "name": "Hazmat Boots", "rarity": "epic", "spawnPOI": "REPCONN Test Site", "levelRequirement": 18, "type": "armor", "priceCAPS": 1800 },
+  { "id": "prototype_energy_blade", "name": "Prototype Energy Blade", "rarity": "epic", "spawnPOI": "Helios One", "levelRequirement": 22, "type": "weapon", "priceCAPS": 2800,
+    "variants": [
+      { "modifier": "Charged", "effect": "Adds energy damage", "rarityBoost": "legendary" },
+      { "modifier": "Serrated", "effect": "Adds bleed damage", "rarityBoost": "epic" }
+    ]
+  },
+  { "id": "riot_mask", "name": "Riot Mask", "rarity": "epic", "spawnPOI": "Vault 22", "levelRequirement": 20, "type": "armor", "priceCAPS": 1900 },
+
+  { "id": "alien_blaster", "name": "Alien Blaster", "rarity": "legendary", "spawnPOI": "Mothership Zeta", "levelRequirement": 99, "type": "weapon", "priceCAPS": 18000,
+    "variants": [
+      { "modifier": "Overcharged", "effect": "Massive damage, unstable shots", "rarityBoost": "legendary" },
+      { "modifier": "Scoped", "effect": "Extended range", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "fatman", "name": "Fat Man Mini-Nuke Launcher", "rarity": "legendary", "spawnPOI": "Deathclaw Promontory", "levelRequirement": 45, "type": "weapon", "priceCAPS": 20000,
+    "variants": [
+      { "modifier": "Overloaded", "effect": "Wider blast radius", "rarityBoost": "legendary" },
+      { "modifier": "Experimental", "effect": "Chance to misfire", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "nuka_quantum", "name": "Nuka-Cola Quantum", "rarity": "legendary", "spawnPOI": "Nuka-World", "levelRequirement": 30, "type": "consumable", "priceCAPS": 9000 },
+  { "id": "experimental_serum", "name": "Experimental Serum", "rarity": "legendary", "spawnPOI": "Los Alamos Lab", "levelRequirement": 50, "type": "consumable", "priceCAPS": 12000 },
+  { "id": "prototype_x01", "name": "Prototype X-01 Power Armor", "rarity": "legendary", "spawnPOI": "Yucca Mountain", "levelRequirement": 50, "type": "armor", "priceCAPS": 20000,
+    "variants": [
+      { "modifier": "Experimental", "effect": "Random stat boosts", "rarityBoost": "legendary" },
+      { "modifier": "Reinforced", "effect": "Extra durability", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "tesla_cannon", "name": "Tesla Cannon", "rarity": "legendary", "spawnPOI": "Nevada Test Site", "levelRequirement": 48, "type": "weapon", "priceCAPS": 18500,
+    "variants": [
+      { "modifier": "Overcharged", "effect": "Massive damage, unstable shots", "rarityBoost": "legendary" },
+      { "modifier": "Scoped", "effect": "Extended effective range", "rarityBoost": "legendary" },
+      { "modifier": "Capacitive", "effect": "Chains lightning to nearby targets", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "annihilator_launcher", "name": "Annihilator Missile Launcher", "rarity": "legendary", "spawnPOI": "Glowing Sea", "levelRequirement": 50, "type": "weapon", "priceCAPS": 19500,
+    "variants": [
+      { "modifier": "Overcharged", "effect": "Massive explosive radius", "rarityBoost": "legendary" },
+      { "modifier": "Guided", "effect": "Missiles track targets", "rarityBoost": "legendary" },
+      { "modifier": "Experimental", "effect": "Chance to split into multiple warheads", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "prototype_plasma_caster", "name": "Prototype Plasma Caster", "rarity": "legendary", "spawnPOI": "Hanford Site", "levelRequirement": 40, "type": "weapon", "priceCAPS": 17000,
+    "variants": [
+      { "modifier": "Overcharged", "effect": "Boosts plasma damage", "rarityBoost": "legendary" },
+      { "modifier": "Scoped", "effect": "Improves accuracy", "rarityBoost": "legendary" },
+      { "modifier": "Experimental", "effect": "Random chance to cause chain reaction", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "vault_tech_experiment", "name": "Vault-Tec Experimental Device", "rarity": "legendary", "spawnPOI": "Vault 87", "levelRequirement": 30, "type": "artifact", "priceCAPS": 15000 },
+  { "id": "trinity_core", "name": "Trinity Core", "rarity": "legendary", "spawnPOI": "Trinity Site", "levelRequirement": 55, "type": "artifact", "priceCAPS": 16000 },
+  { "id": "deathclaw_hide_armor", "name": "Deathclaw Hide Armor", "rarity": "legendary", "spawnPOI": "Dead Wind Cavern", "levelRequirement": 40, "type": "armor", "priceCAPS": 17500,
+    "variants": [
+      { "modifier": "Reinforced", "effect": "Extra durability", "rarityBoost": "legendary" },
+      { "modifier": "Spiked", "effect": "Adds melee damage resistance", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "chernobyl_relic", "name": "Chernobyl Reactor Relic", "rarity": "legendary", "spawnPOI": "Chernobyl Pripyat", "levelRequirement": 99, "type": "artifact", "priceCAPS": 19000 },
+  { "id": "fukushima_core", "name": "Fukushima Core Fragment", "rarity": "legendary", "spawnPOI": "Fukushima Daiichi", "levelRequirement": 99, "type": "artifact", "priceCAPS": 19000 },
+  { "id": "dunwich_mask", "name": "Dunwich Mask of Madness", "rarity": "legendary", "spawnPOI": "Dunwich Building", "levelRequirement": 40, "type": "armor", "priceCAPS": 17000 },
+  { "id": "pitt_forge_armor", "name": "Pitt Forgemaster Armor", "rarity": "legendary", "spawnPOI": "The Pitt", "levelRequirement": 40, "type": "armor", "priceCAPS": 17000 },
+  { "id": "pitt_scrap", "name": "Forged Scrap Ingot", "rarity": "legendary", "spawnPOI": "The Pitt", "levelRequirement": 40, "type": "artifact", "priceCAPS": 15000 },
+  { "id": "chernobyl_dust", "name": "Chernobyl Dust Sample", "rarity": "legendary", "spawnPOI": "Chernobyl Pripyat", "levelRequirement": 99, "type": "artifact", "priceCAPS": 15500 },
+  { "id": "fukushima_badge", "name": "Fukushima Worker Badge", "rarity": "legendary", "spawnPOI": "Fukushima Daiichi", "levelRequirement": 99, "type": "lore", "priceCAPS": 14500 },
+  { "id": "dunwich_tome", "name": "Dunwich Cult Tome", "rarity": "legendary", "spawnPOI": "Dunwich Building", "levelRequirement": 40, "type": "lore", "priceCAPS": 15000 },
+  { "id": "trinity_glass", "name": "Trinity Site Glass Shard", "rarity": "legendary", "spawnPOI": "Trinity Site", "levelRequirement": 55, "type": "artifact", "priceCAPS": 15500 },
+  { "id": "glow_blade", "name": "Glow Irradiated Blade", "rarity": "legendary", "spawnPOI": "Glow", "levelRequirement": 55, "type": "weapon", "priceCAPS": 18500,
+    "variants": [
+      { "modifier": "Serrated", "effect": "Adds bleed damage", "rarityBoost": "legendary" },
+      { "modifier": "Heavy", "effect": "Boosts damage but slows swing speed", "rarityBoost": "legendary" },
+      { "modifier": "Experimental", "effect": "Chance to trigger radiation explosion", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "mariposa_gauss_proto", "name": "Mariposa Prototype Gauss Cannon", "rarity": "legendary", "spawnPOI": "Mariposa Base", "levelRequirement": 45, "type": "weapon", "priceCAPS": 17500 },
+  { "id": "vault_tech_core", "name": "Vault-Tec Core Prototype", "rarity": "legendary", "spawnPOI": "Vault 87", "levelRequirement": 30, "type": "artifact", "priceCAPS": 15500 },
+  { "id": "raiders_revenge", "name": "Raider’s Revenge", "rarity": "legendary", "spawnPOI": "Cottonwood Cove", "levelRequirement": 40, "type": "weapon", "priceCAPS": 17000,
+    "variants": [
+      { "modifier": "Bloodied", "effect": "Boosts damage when low health", "rarityBoost": "legendary" },
+      { "modifier": "Spiked", "effect": "Adds melee damage", "rarityBoost": "legendary" }
+    ]
+  },
+  { "id": "new_reno_gamble", "name": "New Reno Gamble", "rarity": "legendary", "spawnPOI": "New Reno", "levelRequirement": 28, "type": "artifact", "priceCAPS": 15000 },
+  { "id": "shards_of_trinity", "name": "Shards of Trinity", "rarity": "legendary", "spawnPOI": "Trinity Site", "levelRequirement": 55, "type": "artifact", "priceCAPS": 16000 }
+]

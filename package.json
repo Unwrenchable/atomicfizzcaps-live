@@ -1,0 +1,50 @@
+{
+  "name": "atomicfizzcaps-live",
+  "version": "1.0.0",
+  "description": "Atomic Fizz Caps - Wasteland GPS Geo-Game powered by Solana",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "solana",
+    "geo-game",
+    "nft",
+    "fallout",
+    "web3",
+    "gps",
+    "atomic-fizz",
+    "metaplex"
+  ],
+  "author": "Unwrenchable",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.x <=20.x"
+  },
+  "dependencies": {
+    "@metaplex-foundation/js": "^0.20.1",
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.95.3",
+    "bs58": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.4.1",
+    "morgan": "^1.10.0",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0"
+  }
+}

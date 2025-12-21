@@ -1,0 +1,772 @@
+[
+  {
+    "id": "quest_echoes_dam",
+    "name": "Echoes of the Dam",
+    "type": "main",
+    "poIs": ["Hoover Dam", "Lucky 38", "Helios One"],
+    "description": "Restore power to the Mojave by reactivating Hoover Dam’s turbines.",
+    "objectives": [
+      "Secure Hoover Dam control room",
+      "Retrieve missing turbine parts from Helios One",
+      "Negotiate with factions at Lucky 38"
+    ],
+    "endings": [
+      {
+        "id": "ending_settlers",
+        "description": "You hand control of the Dam to Mojave settlers.",
+        "reward": "Advanced Combat Armor",
+        "consequence": "Settlers thrive, factions lose influence."
+      },
+      {
+        "id": "ending_faction",
+        "description": "You give control to a militarized faction.",
+        "reward": "Prototype Energy Rifle",
+        "consequence": "Faction gains dominance, settlers are oppressed."
+      },
+      {
+        "id": "ending_sabotage",
+        "description": "You sabotage the turbines, leaving the Dam offline.",
+        "reward": "Caps payout",
+        "consequence": "No one controls the power, chaos spreads across the Mojave."
+      }
+    ]
+  },
+  {
+    "id": "quest_vault_experiment",
+    "name": "The Vault Experiment",
+    "type": "main",
+    "poIs": ["Vault 3", "Vault 19", "Vault 22", "Vault 87"],
+    "description": "Investigate Mojave Vaults to uncover the truth about Vault-Tec’s experiments.",
+    "objectives": [
+      "Search Vault 3 for experiment logs",
+      "Recover data from Vault 19",
+      "Defeat mutated creatures in Vault 22",
+      "Confront overseer AI in Vault 87"
+    ],
+    "endings": [
+      {
+        "id": "ending_expose",
+        "description": "You expose Vault-Tec’s crimes to the Mojave.",
+        "reward": "Vault-Tec Experimental Device",
+        "consequence": "Public outrage weakens corporate remnants."
+      },
+      {
+        "id": "ending_coverup",
+        "description": "You sell the data to a Mojave faction.",
+        "reward": "Caps + faction favor",
+        "consequence": "Vault-Tec secrets remain hidden."
+      },
+      {
+        "id": "ending_destroy",
+        "description": "You destroy all records.",
+        "reward": "Prototype Armor",
+        "consequence": "No one learns the truth, history erased."
+      }
+    ]
+  },
+  {
+    "id": "quest_nuclear_trail",
+    "name": "The Nuclear Trail",
+    "type": "main",
+    "poIs": ["Nevada Test Site", "Yucca Mountain", "Helios One", "Trinity Site"],
+    "description": "Track down missing nuclear prototypes scattered across Mojave test facilities.",
+    "objectives": [
+      "Recover prototype armor at Yucca Mountain",
+      "Secure Tesla Cannon at Nevada Test Site",
+      "Investigate experimental serum at Helios One",
+      "Retrieve relic at Trinity Site"
+    ],
+    "endings": [
+      {
+        "id": "ending_destroy",
+        "description": "You destroy the prototypes.",
+        "reward": "Caps payout",
+        "consequence": "The Mojave is spared from nuclear escalation."
+      },
+      {
+        "id": "ending_sell",
+        "description": "You sell them to a faction.",
+        "reward": "Faction favor + rare loot",
+        "consequence": "Faction gains dangerous technology."
+      },
+      {
+        "id": "ending_keep",
+        "description": "You keep the prototypes for yourself.",
+        "reward": "Prototype X-01 Power Armor",
+        "consequence": "You become a feared figure in the Mojave."
+      }
+    ]
+  },
+  {
+    "id": "quest_strip_shadows",
+    "name": "Shadows of the Strip",
+    "type": "main",
+    "poIs": ["Ultra-Luxe Casino", "Gomorrah Casino", "Lucky 38"],
+    "description": "Uncover corruption and secrets hidden within the Strip casinos.",
+    "objectives": [
+      "Investigate Ultra-Luxe backrooms",
+      "Retrieve smuggled weapons from Gomorrah",
+      "Confront casino bosses at Lucky 38"
+    ],
+    "endings": [
+      {
+        "id": "ending_clean",
+        "description": "You clean up the Strip.",
+        "reward": "Casino Guard Uniform",
+        "consequence": "Casinos run legitimately, profits shrink."
+      },
+      {
+        "id": "ending_join",
+        "description": "You join the corruption.",
+        "reward": "Caps + rare weapon",
+        "consequence": "You gain power in the underworld."
+      },
+      {
+        "id": "ending_destroy",
+        "description": "You burn the Strip down.",
+        "reward": "Legendary artifact",
+        "consequence": "Chaos reigns in New Vegas."
+      }
+    ]
+  },
+  {
+    "id": "quest_ncr_push",
+    "name": "NCR Final Push",
+    "type": "main",
+    "poIs": ["Camp Forlorn Hope", "Bitter Springs", "Hoover Dam"],
+    "description": "Lead NCR forces in a decisive assault against Legion strongholds.",
+    "objectives": [
+      "Rally demoralized troops at Forlorn Hope",
+      "Aid refugees at Bitter Springs",
+      "Secure the dam in the final battle"
+    ],
+    "endings": [
+      {
+        "id": "ending_ncr_victory",
+        "description": "NCR wins the Mojave.",
+        "reward": "NCR Ranger Combat Armor",
+        "consequence": "Republic law spreads, tribes displaced."
+      },
+      {
+        "id": "ending_stalemate",
+        "description": "Force a truce.",
+        "reward": "Peace Medal",
+        "consequence": "Uneasy balance, ongoing skirmishes."
+      },
+      {
+        "id": "ending_legion_breakthrough",
+        "description": "Legion overruns NCR lines.",
+        "reward": "Legion Favor",
+        "consequence": "NCR retreats, Caesar claims victory."
+      }
+    ]
+  },
+  {
+    "id": "quest_bos_purge",
+    "name": "Brotherhood Purge",
+    "type": "main",
+    "poIs": ["Hidden Valley Bunker", "HELIOS One", "REPCONN HQ"],
+    "description": "Aid or oppose the Brotherhood of Steel in their tech reclamation crusade.",
+    "objectives": [
+      "Infiltrate Hidden Valley bunker",
+      "Redirect power at HELIOS One",
+      "Recover rocket tech from REPCONN"
+    ],
+    "endings": [
+      {
+        "id": "ending_bos_dominance",
+        "description": "BoS hoards all tech.",
+        "reward": "T-51b Power Armor",
+        "consequence": "Wasteland tech stagnates."
+      },
+      {
+        "id": "ending_bos_alliance",
+        "description": "Share tech with Followers.",
+        "reward": "Laser RCW",
+        "consequence": "Tech renaissance."
+      },
+      {
+        "id": "ending_bos_destruction",
+        "description": "Destroy the bunker.",
+        "reward": "Elder Robes",
+        "consequence": "BoS chapter wiped out."
+      }
+    ]
+  },
+  {
+    "id": "quest_khans_alliance",
+    "name": "Khan Alliance",
+    "type": "main",
+    "poIs": ["Red Rock Canyon", "Boulder City", "Cottonwood Cove"],
+    "description": "Forge the Great Khans into a new power or crush them.",
+    "objectives": [
+      "Meet Papa Khan at Red Rock",
+      "Mediate in Boulder City",
+      "Strike Legion at Cottonwood Cove"
+    ],
+    "endings": [
+      {
+        "id": "ending_khan_empire",
+        "description": "Khans rise independently.",
+        "reward": "Khan Trick Armor",
+        "consequence": "New tribal superpower."
+      },
+      {
+        "id": "ending_ncr_merge",
+        "description": "Khans join NCR.",
+        "reward": "Scout Gear",
+        "consequence": "Tribes assimilated."
+      },
+      {
+        "id": "ending_khan_extinction",
+        "description": "Wipe out the Khans.",
+        "reward": "Papa's Helmet",
+        "consequence": "Red Rock falls silent."
+      }
+    ]
+  },
+  {
+    "id": "quest_boomers_volare",
+    "name": "Volare! Reborn",
+    "type": "main",
+    "poIs": ["Nellis AFB", "Lake Mead Cave", "Crashed B-29"],
+    "description": "Help the Boomers achieve flight once more.",
+    "objectives": [
+      "Raise the B-29 from Lake Mead",
+      "Secure parts from REPCONN",
+      "Launch the bomber"
+    ],
+    "endings": [
+      {
+        "id": "ending_boomer_isolation",
+        "description": "Boomers stay hidden.",
+        "reward": "Bomber Blueprint",
+        "consequence": "Nellis remains fortress."
+      },
+      {
+        "id": "ending_boomer_support",
+        "description": "Bombers aid your chosen faction.",
+        "reward": "Artillery Barrage Perk",
+        "consequence": "Air power shifts war."
+      },
+      {
+        "id": "ending_boomer_destruction",
+        "description": "Sabotage the plane.",
+        "reward": "Caps from NCR",
+        "consequence": "Boomers grounded forever."
+      }
+    ]
+  },
+  {
+    "id": "quest_followers_aid",
+    "name": "Followers' Aid",
+    "type": "main",
+    "poIs": ["Old Mormon Fort", "Westside Co-op", "Aerotech Office Park"],
+    "description": "Expand the Followers of the Apocalypse's humanitarian reach.",
+    "objectives": [
+      "Deliver supplies to Westside",
+      "Treat refugees at Aerotech",
+      "Defend the Fort from raiders"
+    ],
+    "endings": [
+      {
+        "id": "ending_followers_expansion",
+        "description": "Followers thrive.",
+        "reward": "Doctor's Bag NFT",
+        "consequence": "Wasteland health improves."
+      },
+      {
+        "id": "ending_followers_neutral",
+        "description": "Maintain current aid.",
+        "reward": "Med-X Stash",
+        "consequence": "Status quo."
+      },
+      {
+        "id": "ending_followers_fall",
+        "description": "Followers collapse.",
+        "reward": "Caps from raiders",
+        "consequence": "Medical crisis spreads."
+      }
+    ]
+  },
+  {
+    "id": "quest_legion_revolt",
+    "name": "Legion Revolt",
+    "type": "main",
+    "poIs": ["Cottonwood Cove", "Nelson", "Fortification Hill"],
+    "description": "Incite or crush a slave uprising in Caesar's Legion.",
+    "objectives": [
+      "Arm slaves at Cottonwood Cove",
+      "Sabotage Nelson crucifixion",
+      "Storm Fortification Hill"
+    ],
+    "endings": [
+      {
+        "id": "ending_slave_freedom",
+        "description": "Slaves break chains.",
+        "reward": "Centurion Armor",
+        "consequence": "Legion weakened."
+      },
+      {
+        "id": "ending_legion_crush",
+        "description": "Revolt brutally suppressed.",
+        "reward": "Caesar's Favor",
+        "consequence": "Legion stronger."
+      },
+      {
+        "id": "ending_slave_legion",
+        "description": "Slaves join Legion ranks.",
+        "reward": "Recruit Helmet",
+        "consequence": "Legion grows."
+      }
+    ]
+  },
+  {
+    "id": "quest_powder_uprising",
+    "name": "Powder Uprising",
+    "type": "main",
+    "poIs": ["NCR Correctional Facility", "Primm", "Vault 19"],
+    "description": "Lead the Powder Gangers to power or destruction.",
+    "objectives": [
+      "Break out NCRCF prisoners",
+      "Raid Primm for supplies",
+      "Claim Vault 19 as base"
+    ],
+    "endings": [
+      {
+        "id": "ending_ganger_empire",
+        "description": "Gangers control highways.",
+        "reward": "Dynamite Master Perk",
+        "consequence": "Trade routes unsafe."
+      },
+      {
+        "id": "ending_ganger_redemption",
+        "description": "Gangers reform.",
+        "reward": "Sheriff Badge",
+        "consequence": "Primm prospers."
+      },
+      {
+        "id": "ending_ganger_annihilation",
+        "description": "NCR wipes them out.",
+        "reward": "Trooper Armor",
+        "consequence": "Highways safe."
+      }
+    ]
+  },
+  {
+    "id": "quest_white_glove",
+    "name": "White Glove Feast",
+    "type": "main",
+    "poIs": ["Ultra-Luxe Casino", "Gomorrah", "The Tops"],
+    "description": "Uncover the White Glove Society's darkest secrets.",
+    "objectives": [
+      "Investigate Ultra-Luxe kitchen",
+      "Track meat sources to Gomorrah",
+      "Confront society at masked ball"
+    ],
+    "endings": [
+      {
+        "id": "ending_society_reform",
+        "description": "End cannibalism.",
+        "reward": "Formal Wear NFT",
+        "consequence": "Strip society cleans up."
+      },
+      {
+        "id": "ending_join_feast",
+        "description": "Become a member.",
+        "reward": "Masked Helmet",
+        "consequence": "Cannibals thrive in shadows."
+      },
+      {
+        "id": "ending_society_exposure",
+        "description": "Expose to public.",
+        "reward": "Caps from NCR",
+        "consequence": "Ultra-Luxe ruined."
+      }
+    ]
+  },
+  {
+    "id": "quest_kings_gambit",
+    "name": "Kings' Gambit",
+    "type": "main",
+    "poIs": ["Freeside", "King's School of Impersonation", "The Tops"],
+    "description": "Broker peace or war between the Kings and NCR in Freeside.",
+    "objectives": [
+      "Meet the King in his school",
+      "Resolve Pacer's aggression",
+      "Negotiate at NCR embassy"
+    ],
+    "endings": [
+      {
+        "id": "ending_kings_peace",
+        "description": "Kings and NCR coexist.",
+        "reward": "Elvis Jacket",
+        "consequence": "Freeside stabilizes."
+      },
+      {
+        "id": "ending_kings_war",
+        "description": "Kings fight NCR.",
+        "reward": "Grease Gun",
+        "consequence": "Freeside in chaos."
+      },
+      {
+        "id": "ending_kings_absorb",
+        "description": "Kings join NCR.",
+        "reward": "NCR MP Armor",
+        "consequence": "Freeside annexed."
+      }
+    ]
+  },
+  {
+    "id": "quest_remnants_power",
+    "name": "Remnants' Power",
+    "type": "main",
+    "poIs": ["Remnants Bunker", "Ranger Station Foxtrot", "Camp Golf"],
+    "description": "Awaken Enclave remnants for one final mission.",
+    "objectives": [
+      "Find bunker entrance",
+      "Recruit veterans",
+      "Suit up in Vertibird"
+    ],
+    "endings": [
+      {
+        "id": "ending_enclave_strike",
+        "description": "Remnants aid your faction.",
+        "reward": "Enclave Power Armor",
+        "consequence": "Decisive air strike."
+      },
+      {
+        "id": "ending_remnants_retire",
+        "description": "Let them rest.",
+        "reward": "Remnants Helmet",
+        "consequence": "Enclave fades."
+      },
+      {
+        "id": "ending_remnants_betrayal",
+        "description": "Turn them over to NCR.",
+        "reward": "Caps + NCR Favor",
+        "consequence": "Enclave imprisoned."
+      }
+    ]
+  },
+  {
+    "id": "quest_nipton_ashes",
+    "name": "Nipton Ashes",
+    "type": "main",
+    "poIs": ["Nipton", "Nipton Road Pit Stop", "Searchlight"],
+    "description": "Avenge or exploit the horrors of Nipton's lottery.",
+    "objectives": [
+      "Investigate burned town",
+      "Track Vulpes Inculta",
+      "Deal with irradiated Searchlight"
+    ],
+    "endings": [
+      {
+        "id": "ending_vengeance",
+        "description": "Hunt down Vulpes.",
+        "reward": "Vulpes' Head",
+        "consequence": "Legion morale drops."
+      },
+      {
+        "id": "ending_lottery_profit",
+        "description": "Run your own lottery.",
+        "reward": "Massive Caps",
+        "consequence": "New cruelty spreads."
+      },
+      {
+        "id": "ending_rebuild",
+        "description": "Help survivors rebuild.",
+        "reward": "Trader Gear",
+        "consequence": "Nipton reborn."
+      }
+    ]
+  },
+  {
+    "id": "quest_black_mountain",
+    "name": "Black Mountain",
+    "type": "main",
+    "poIs": ["Black Mountain", "Jacobstown", "REPCONN Test Site"],
+    "description": "Resolve the super mutant/nightkin conflict at Black Mountain.",
+    "objectives": [
+      "Contact Tabitha",
+      "Find Neil's parts",
+      "Decide mutant fate"
+    ],
+    "endings": [
+      {
+        "id": "ending_mutant_peace",
+        "description": "Unite mutants.",
+        "reward": "Super Mutant Ally",
+        "consequence": "Jacobstown alliance."
+      },
+      {
+        "id": "ending_tabitha_rule",
+        "description": "Support Tabitha.",
+        "reward": "State-of-the-Art Radio",
+        "consequence": "Utobitha broadcasts."
+      },
+      {
+        "id": "ending_mutant_purge",
+        "description": "Clear the mountain.",
+        "reward": "Heavy Incinerator",
+        "consequence": "Mutants scattered."
+      }
+    ]
+  },
+  {
+    "id": "side_ghost_town_gunfight",
+    "name": "Ghost Town Gunfight",
+    "type": "side",
+    "poIs": ["Goodsprings", "Goodsprings Cemetery"],
+    "description": "Help Goodsprings defend against Powder Gangers.",
+    "objectives": [
+      "Rally townsfolk",
+      "Set traps at cemetery"
+    ]
+  },
+  {
+    "id": "side_three_card_bounty",
+    "name": "Three-Card Bounty",
+    "type": "side",
+    "poIs": ["Primm", "Mojave Outpost"],
+    "description": "Hunt escaped convicts.",
+    "objectives": [
+      "Track targets",
+      "Collect bounties"
+    ]
+  },
+  {
+    "id": "side_buried_treasure",
+    "name": "Buried Treasure",
+    "type": "side",
+    "poIs": ["Novac", "REPCONN Test Site"],
+    "description": "Follow clues to hidden cache.",
+    "objectives": [
+      "Find holotape",
+      "Dig at marked spot"
+    ]
+  },
+  {
+    "id": "side_caravan_rescue",
+    "name": "Caravan Rescue",
+    "type": "side",
+    "poIs": ["Jean Sky Diving", "Nipton Road Pit Stop"],
+    "description": "Save caravan from mutants.",
+    "objectives": [
+      "Clear pit stop",
+      "Escort survivors"
+    ]
+  },
+  {
+    "id": "side_lost_prospector",
+    "name": "Lost Prospector",
+    "type": "side",
+    "poIs": ["Sloan", "Quarry Junction"],
+    "description": "Find missing miner.",
+    "objectives": [
+      "Talk to Sloan workers",
+      "Search quarry"
+    ]
+  },
+  {
+    "id": "side_radio_repair",
+    "name": "Radio Repair",
+    "type": "side",
+    "poIs": ["Goodsprings", "Primm"],
+    "description": "Fix settler's radio.",
+    "objectives": [
+      "Find parts",
+      "Return fixed radio"
+    ]
+  },
+  {
+    "id": "side_fiend_heads",
+    "name": "Fiend Heads",
+    "type": "side",
+    "poIs": ["Vault 3", "Westside"],
+    "description": "Collect fiend bounties.",
+    "objectives": [
+      "Clear Vault 3 leaders",
+      "Return heads"
+    ]
+  },
+  {
+    "id": "side_nightkin_hunt",
+    "name": "Nightkin Hunt",
+    "type": "side",
+    "poIs": ["Black Mountain", "REPCONN HQ"],
+    "description": "Deal with stealthy nightkin.",
+    "objectives": [
+      "Track to REPCONN",
+      "Eliminate leader"
+    ]
+  },
+  {
+    "id": "side_aba_daba",
+    "name": "Aba Daba Honeymoon",
+    "type": "side",
+    "poIs": ["Red Rock Drug Lab", "Crimson Caravan"],
+    "description": "Run chems for Khans.",
+    "objectives": [
+      "Deliver packages",
+      "Rescue courier"
+    ]
+  },
+  {
+    "id": "side_bleed_dry",
+    "name": "Bleed Me Dry",
+    "type": "side",
+    "poIs": ["The Thorn", "Various burrows"],
+    "description": "Collect creature eggs.",
+    "objectives": [
+      "Hunt radscorpion, cazador, deathclaw eggs"
+    ]
+  },
+  {
+    "id": "side_ed_e_love",
+    "name": "ED-E My Love",
+    "type": "side",
+    "poIs": ["Primm", "Novac", "Hidden Valley"],
+    "description": "Upgrade broken eyebot.",
+    "objectives": [
+      "Trigger upgrades at locations"
+    ]
+  },
+  {
+    "id": "side_gi_blues",
+    "name": "G.I. Blues",
+    "type": "side",
+    "poIs": ["Freeside", "Atomic Wrangler"],
+    "description": "Solve Kings' troubles.",
+    "objectives": [
+      "Investigate attacks",
+      "Confront Pacer"
+    ]
+  },
+  {
+    "id": "side_heartache_number",
+    "name": "Heartache by the Number",
+    "type": "side",
+    "poIs": ["Mojave Outpost", "Cassidy Caravan wreckage"],
+    "description": "Help Cass avenge her caravan.",
+    "objectives": [
+      "Track attackers",
+      "Confront Van Graffs/Crimson"
+    ]
+  },
+  {
+    "id": "side_crazy_crazy",
+    "name": "Crazy, Crazy, Crazy",
+    "type": "side",
+    "poIs": ["Black Mountain"],
+    "description": "Free Neil from Tabitha.",
+    "objectives": [
+      "Climb mountain",
+      "Deal with Tabitha"
+    ]
+  },
+  {
+    "id": "side_come_fly",
+    "name": "Come Fly With Me",
+    "type": "side",
+    "poIs": ["REPCONN HQ", "Novac"],
+    "description": "Launch ghouls into space.",
+    "objectives": [
+      "Clear nightkin",
+      "Fuel rockets"
+    ]
+  },
+  {
+    "id": "side_beyond_beef",
+    "name": "Beyond the Beef",
+    "type": "side",
+    "poIs": ["Ultra-Luxe"],
+    "description": "Solve missing person case.",
+    "objectives": [
+      "Investigate disappearance",
+      "Choose resolution"
+    ]
+  },
+  {
+    "id": "side_high_times",
+    "name": "High Times",
+    "type": "side",
+    "poIs": ["Westside", "New Vegas Medical Clinic"],
+    "description": "Cure addicts.",
+    "objectives": [
+      "Treat Hoff and Ronte"
+    ]
+  },
+  {
+    "id": "side_i_could_care",
+    "name": "I Could Make You Care",
+    "type": "side",
+    "poIs": ["188 Trading Post", "Hidden Valley"],
+    "description": "Help Veronica question BoS.",
+    "objectives": [
+      "Find tech samples",
+      "Confront elders"
+    ]
+  },
+  {
+    "id": "side_forgot_remember",
+    "name": "I Forgot to Remember to Forget",
+    "type": "side",
+    "poIs": ["Bitter Springs"],
+    "description": "Help Boone find peace.",
+    "objectives": [
+      "Night scope history",
+      "Choose vengeance or forgiveness"
+    ]
+  },
+  {
+    "id": "side_put_spell",
+    "name": "I Put a Spell on You",
+    "type": "side",
+    "poIs": ["Camp McCarran"],
+    "description": "Find NCR spy.",
+    "objectives": [
+      "Investigate monorail sabotage"
+    ]
+  },
+  {
+    "id": "side_kind_town",
+    "name": "My Kind of Town",
+    "type": "side",
+    "poIs": ["Primm"],
+    "description": "Install new sheriff.",
+    "objectives": [
+      "Choose NCR, robot, or outlaw leader"
+    ]
+  },
+  {
+    "id": "side_sunset_stars",
+    "name": "Sunset Sarsaparilla Star",
+    "type": "side",
+    "poIs": ["Sunset HQ", "Various locations"],
+    "description": "Collect 50 star caps.",
+    "objectives": [
+      "Find prize vault"
+    ]
+  },
+  {
+    "id": "side_boulder_blues",
+    "name": "Boulder City Blues",
+    "type": "side",
+    "poIs": ["Boulder City"],
+    "description": "Resolve Khan hostage situation.",
+    "objectives": [
+      "Negotiate or fight"
+    ]
+  },
+  {
+    "id": "side_wheel_fortune",
+    "name": "Wheel of Fortune",
+    "type": "side",
+    "poIs": ["Aerotech Office Park", "Novac"],
+    "description": "Help stranded travelers.",
+    "objectives": [
+      "Repair vehicles"
+    ]
+  }
+]

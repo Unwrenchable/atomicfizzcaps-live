@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>OVERSEER TERMINAL • VAULT 77</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/terminal.css" />
+</head>
+<body>
+    <div class="terminal-screen crt">
+        <h1>OVERSEER TERMINAL</h1>
+        <div id="chat"></div>
+        <div id="inputArea">
+            <input type="text" id="input" placeholder="Transmit message..." autocomplete="off" />
+            <button id="send">SEND</button>
+        </div>
+    </div>
+
+    <script>
+        // Pass HF key safely from main page or env – fallback to empty
+        const HF_API_KEY = new URLSearchParams(window.location.search).get('hf') || '';
+        window.HF_API_KEY = HF_API_KEY;
+    </script>
+    <script src="/js/overseer.js"></script>
+</body>
+</html>
