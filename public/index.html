@@ -2,25 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>OVERSEER TERMINAL • VAULT 77</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ATOMIC FIZZ • VAULT 77 • WASTELAND GPS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/css/pipboy.css" />
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/terminal.css" />
 </head>
 <body>
-    <div class="terminal-screen crt">
-        <h1>OVERSEER TERMINAL</h1>
-        <div id="chat"></div>
-        <div id="inputArea">
-            <input type="text" id="input" placeholder="Transmit message..." autocomplete="off" />
-            <button id="send">SEND</button>
+    <a href="/overseer.html" class="overseer-btn">ACCESS OVERSEER TERMINAL</a>
+
+    <div class="pipboy">
+        <div class="panel">
+            <h1>ATOMIC FIZZ CAPS</h1>
+            <div class="sub">VAULT 77 • WASTELAND GPS</div>
+
+            <div class="header-row">
+                <div class="controls">
+                    <button class="btn wallet-btn" id="connectWallet">CONNECT WALLET</button>
+                    <button class="btn" id="requestGpsBtn">REQUEST GPS LOCK</button>
+                </div>
+            </div>
+
+            <div id="status">Status: ready – tap REQUEST GPS if needed</div>
+
+            <div class="pip-status">
+                <div class="pip-lvl">LVL <span id="lvl">1</span></div>
+                <div class="pip-hp-container">
+                    <div class="pip-hp-fill" id="hpFill"></div>
+                    <div class="pip-rad-fill" id="radFill"></div>
+                    <div class="pip-hp-text" id="hpText">HP 100 / 100</div>
+                </div>
+                <div class="pip-caps"><span id="caps">0</span> CAPS</div>
+            </div>
+
+            <div class="pip-claimed">CLAIMED <span id="claimed">0</span></div>
+
+            <div id="mapWrap">
+                <div id="map"></div>
+                <div class="gps-badge">
+                    <div id="accDot" class="acc-dot"></div>
+                    <div id="accText">GPS: waiting...</div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-panel="map">MAP</div>
+                <div class="tab" data-panel="stat">STATUS</div>
+                <div class="tab" data-panel="items">INVENTORY</div>
+                <div class="tab" data-panel="quests">QUESTS</div>
+                <div class="tab" data-panel="shop">SCAVENGER'S EXCHANGE</div>
+            </div>
+
+            <div class="terminal" id="terminal">
+                <button class="btn" id="panelClose">X</button>
+                <h4 id="panelTitle">TERMINAL</h4>
+                <div id="panelBody">Loading...</div>
+            </div>
+
+            <div id="mintModal" class="mint-modal">
+                <div id="mintTitle">LOOT FOUND</div>
+                <div id="mintMsg" class="muted-small">Claiming CAPS...</div>
+                <div id="mintProgress">
+                    <div class="progress-bar"></div>
+                </div>
+                <button class="btn" id="mintCloseBtn">Close</button>
+            </div>
         </div>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        window.HF_API_KEY = urlParams.get('key') || '';
-    </script>
-    <script src="/js/overseer.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+    <script src="https://unpkg.com/bs58@6.0.0/dist/index.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
