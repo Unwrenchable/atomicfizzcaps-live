@@ -5,28 +5,36 @@ let player = {
   hp: 100, 
   maxHp: 100, 
   caps: 0, 
-  rads: 0, 
+  rads: 0,
+  xp: 0,
+  xpToNext: 100,
   gear: [], 
-  claimed: new Set() 
+  claimed: new Set(),
+  quests: []
 };
 let locations = [], markers = {};
 
 const API_BASE = window.location.origin;
 const CLAIM_RADIUS = 50;
+const MAX_RADS = 1000;
 
-// Hidden terminal signal button
+// Hidden terminal signal
 let terminalSignal = null;
 
 function updateHPBar() {
   if (!document.getElementById('hpFill')) return;
-  const hpPct = player.hp / player.maxHp * 100;
-  const radPct = (player.rads || 0) / 1000 * 100;
+  const hpPct = Math.min(100, player.hp / player.maxHp * 100);
+  const radPct = Math.min(100, player.rads / MAX_RADS * 100);
   document.getElementById('hpFill').style.width = `${hpPct}%`;
   document.getElementById('radFill').style.width = `${radPct}%`;
-  document.getElementById('hpText').textContent = `HP ${player.hp} / ${player.maxHp}`;
+  document.getElementById('hpText').textContent = `HP ${Math.floor(player.hp)} / ${player.maxHp}`;
   document.getElementById('lvl').textContent = player.lvl;
   document.getElementById('caps').textContent = player.caps;
   document.getElementById('claimed').textContent = player.claimed.size;
+
+  if (player.hp <= 0) {
+    setStatus("YOU DIED FROM RADIATION", false);
+  }
 }
 
 function setStatus(text, isGood = true, time = 5000) {
@@ -121,8 +129,12 @@ document.getElementById('connectWallet').onclick = async () => {
         const data = await res.json();
         player = { ...player, ...data };
         player.claimed = new Set(data.claimed || []);
+        player.quests = data.quests || [];
         updateHPBar();
-        checkTerminalAccess(); // Check if they already earned the terminal
+        checkTerminalAccess();
+        if (player.claimed.size === 0) {
+          document.getElementById('tutorialModal')?.style = 'display:block';
+        }
       }
     } catch (e) {
       console.error("Player load error:", e);
@@ -132,17 +144,17 @@ document.getElementById('connectWallet').onclick = async () => {
   }
 };
 
-// Tabs
+// Tabs – FIXED to use #terminal instead of broken #sidePanel
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
 
-    const panel = document.getElementById('sidePanel');
+    const terminal = document.getElementById('terminal');
     if (tab.dataset.panel === 'map') {
-      panel.classList.remove('open');
+      terminal.classList.remove('open');
     } else {
-      panel.classList.add('open');
+      terminal.classList.add('open');
       document.getElementById('panelTitle').textContent = tab.textContent;
 
       if (tab.dataset.panel === 'stat') renderStats();
@@ -154,15 +166,23 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 document.getElementById('panelClose').onclick = () => {
-  document.getElementById('sidePanel').classList.remove('open');
+  document.getElementById('terminal').classList.remove('open');
   document.querySelector('.tab[data-panel="map"]').classList.add('active');
 };
 
+// Close modals
+document.getElementById('mintCloseBtn')?.addEventListener('click', () => {
+  document.getElementById('mintModal').classList.remove('open');
+});
+document.getElementById('tutorialClose')?.addEventListener('click', () => {
+  document.getElementById('tutorialModal').style.display = 'none';
+});
+
 function renderStats() {
   document.getElementById('panelBody').innerHTML = `
-    <div class="list-item"><strong>LEVEL</strong><div>${player.lvl}</div></div>
-    <div class="list-item"><strong>HP</strong><div>${player.hp}/${player.maxHp}</div></div>
-    <div class="list-item"><strong>RADS</strong><div>${player.rads || 0}</div></div>
+    <div class="list-item"><strong>LEVEL</strong><div>${player.lvl} (XP ${player.xp}/${player.xpToNext})</div></div>
+    <div class="list-item"><strong>HP</strong><div>${Math.floor(player.hp)}/${player.maxHp}</div></div>
+    <div class="list-item"><strong>RADS</strong><div>${player.rads}/${MAX_RADS}</div></div>
     <div class="list-item"><strong>CAPS</strong><div>${player.caps}</div></div>
     <div class="list-item"><strong>CLAIMED</strong><div>${player.claimed.size}</div></div>
   `;
@@ -172,30 +192,41 @@ function renderItems() {
   const gear = player.gear || [];
   document.getElementById('panelBody').innerHTML = gear.length 
     ? gear.map(g => `<div class="list-item"><strong>${g.name}</strong><div class="muted-small">${g.rarity || 'common'} • PWR ${g.power || 0}</div></div>`).join('')
-    : '<div class="list-item">No gear equipped</div>';
+    : '<div class="list-item">No gear in inventory</div>';
 }
 
 async function renderQuests() {
   try {
     const res = await fetch(`${API_BASE}/quests`);
-    const quests = await res.json();
-    document.getElementById('panelBody').innerHTML = quests.length
-      ? quests.map(q => `<div class="list-item"><strong>${q.name}</strong><div class="muted-small">${q.description}</div></div>`).join('')
-      : '<div class="list-item">No active quests</div>';
+    const allQuests = await res.json();
+    const html = allQuests.map(q => {
+      const pq = player.quests.find(p => p.id === q.id);
+      const progress = pq ? `${pq.progress || 0}/${q.objectives?.length || '?'} ${pq.completed ? '✓' : ''}` : 'Not started';
+      return `<div class="list-item"><strong>${q.name}</strong><div class="muted-small">${q.description}<br>Progress: ${progress}</div></div>`;
+    }).join('');
+    document.getElementById('panelBody').innerHTML = html || '<div class="list-item">No quests available</div>';
   } catch {
     document.getElementById('panelBody').innerHTML = '<div class="list-item">Quests offline</div>';
   }
 }
 
-async function renderShop() {
-  document.getElementById('panelBody').innerHTML = '<div class="list-item">Shop loading...</div>';
-  // Add shop logic here if needed
+function renderShop() {
+  document.getElementById('panelBody').innerHTML = '<div class="list-item">Scavenger\'s Exchange loading...<br>RadAway and gear coming soon!</div>';
 }
 
-// Claim logic
+// Radiation drain over time
+setInterval(() => {
+  if (player.rads > 200 && player.hp > 0) {
+    player.hp -= Math.floor(player.rads / 200);
+    if (player.hp < 0) player.hp = 0;
+    updateHPBar();
+  }
+}, 30000);
+
+// Claim logic – rarity-based rads
 async function attemptClaim(loc) {
   if (lastAccuracy > CLAIM_RADIUS) {
-    setStatus(`GPS too weak (${Math.round(lastAccuracy)}m needed ≤${CLAIM_RADIUS}m)`, false);
+    setStatus(`GPS too weak (${Math.round(lastAccuracy)}m > ${CLAIM_RADIUS}m)`, false);
     return;
   }
   if (!playerLatLng) {
@@ -238,12 +269,17 @@ async function attemptClaim(loc) {
       player.caps = data.totalCaps || player.caps;
       player.claimed.add(loc.n);
       markers[loc.n]?.setStyle({ fillColor: '#003300', fillOpacity: 0.5 });
-      player.rads = (player.rads || 0) + 50;
-      updateHPBar();
-      setStatus(`+${data.capsFound || 0} CAPS from ${loc.n}!`, true);
-      showLootModal(data.capsFound || 0, loc.n);
 
-      // Check for terminal unlock
+      // Rarity-based radiation
+      const radGain = loc.rarity === 'legendary' ? 120 
+                    : loc.rarity === 'epic' ? 80 
+                    : loc.rarity === 'rare' ? 50 
+                    : 20;
+      player.rads = Math.min(MAX_RADS, player.rads + radGain);
+
+      updateHPBar();
+      setStatus(`+${data.capsFound || 0} CAPS from ${loc.n}! (+${radGain} RADS)`, true, 8000);
+      showLootModal(data.capsFound || 0, loc.n);
       checkTerminalAccess();
     } else {
       setStatus(data.error || "Claim failed", false);
@@ -260,28 +296,17 @@ function showLootModal(caps, location) {
   document.getElementById('mintModal').classList.add('open');
 }
 
-// Random battle (optional - you had this before)
-async function triggerRandomBattle(location) {
-  // Your battle code here if you want to keep it
-}
-
-// Terminal gating
+// Terminal unlock
 function checkTerminalAccess() {
-  const REQUIRED_CLAIMS = 10; // Change this number to make it easier/harder
-
+  const REQUIRED_CLAIMS = 10;
   if (player.claimed.size >= REQUIRED_CLAIMS && !terminalSignal) {
     terminalSignal = document.createElement('a');
     terminalSignal.href = 'terminal.html';
     terminalSignal.className = 'hidden-signal';
     terminalSignal.textContent = '[RESTRICTED SIGNAL ACQUIRED]';
     terminalSignal.title = 'Access hidden terminal';
-
     document.querySelector('.pipboy').appendChild(terminalSignal);
-
-    setTimeout(() => {
-      terminalSignal.classList.add('visible');
-    }, 100);
-
+    setTimeout(() => terminalSignal.classList.add('visible'), 100);
     setStatus('Faint restricted signal detected...', true, 10000);
   }
 }
@@ -313,18 +338,17 @@ async function initMap() {
         fillOpacity: 0.9
       })
       .addTo(map)
-      .bindPopup(`<b>${loc.n}</b><br>Level ${loc.lvl || 1}`)
+      .bindPopup(`<b>${loc.n}</b><br>Level ${loc.lvl || 1}<br>Rarity: ${loc.rarity || 'common'}`)
       .on('click', () => attemptClaim(loc));
 
       markers[loc.n] = m;
 
-      // Mark already claimed
       if (player.claimed.has(loc.n)) {
         m.setStyle({ fillColor: '#003300', fillOpacity: 0.5 });
       }
     });
 
-    setStatus(`Loaded ${locations.length} locations`, true);
+    setStatus(`Loaded ${locations.length} wasteland locations`, true);
   } catch (err) {
     console.error(err);
     setStatus("Locations offline", false);
@@ -334,5 +358,4 @@ async function initMap() {
   updateHPBar();
 }
 
-// Start everything when page loads
 window.addEventListener('load', initMap);
