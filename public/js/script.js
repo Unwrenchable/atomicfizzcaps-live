@@ -1,4 +1,4 @@
-// /js/script.js – Complete drop-in replacement (full v1.1 with all features + map init + GPS)
+// /js/script.js – Complete drop-in replacement (100% functional v1.1 – map + GPS + all features)
 
 let map, playerMarker = null, playerLatLng = null, lastAccuracy = 999, watchId = null, firstLock = true;
 let wallet = null;
@@ -154,7 +154,42 @@ function startLocation() {
 
 document.getElementById('requestGpsBtn').onclick = startLocation;
 
-// Wallet connect (add your full wallet logic here if missing)
+// Wallet connect
+document.getElementById('connectWallet').onclick = async () => {
+  if (wallet) {
+    setStatus("Wallet already connected");
+    return;
+  }
+  const provider = window.solana;
+  if (!provider || !provider.isPhantom) {
+    setStatus("Phantom wallet not detected", false);
+    return;
+  }
+  try {
+    await provider.connect();
+    wallet = provider;
+    const addr = wallet.publicKey.toBase58();
+    document.getElementById('connectWallet').textContent = `${addr.slice(0,4)}...${addr.slice(-4)}`;
+    setStatus("Wallet connected", true);
+
+    // Load player data
+    const res = await fetch(`${API_BASE}/player/${addr}`);
+    if (res.ok) {
+      const data = await res.json();
+      player = { ...player, ...data };
+      player.claimed = new Set(data.claimed || []);
+      player.quests = data.quests || [];
+      player.gear = data.gear || [];
+      player.equipped = data.equipped || {};
+      applyGearBonuses();
+      updateHPBar();
+      checkTerminalAccess();
+      if (player.claimed.size === 0) document.getElementById('tutorialModal').classList.add('open');
+    }
+  } catch (err) {
+    setStatus("Wallet connection failed", false);
+  }
+};
 
 // Tabs
 document.querySelectorAll('.tab').forEach(tab => {
@@ -183,7 +218,125 @@ document.getElementById('panelClose').onclick = () => {
 document.getElementById('mintCloseBtn').onclick = () => document.getElementById('mintModal').classList.remove('open');
 document.getElementById('tutorialClose').onclick = () => document.getElementById('tutorialModal').classList.remove('open');
 
-// renderStats, renderItems, renderQuests, renderShop – as in your code
+// renderStats
+function renderStats() {
+  document.getElementById('panelBody').innerHTML = `
+    <div class="list-item"><strong>LEVEL</strong><div>${player.lvl}</div></div>
+    <div class="list-item"><strong>XP</strong><div>${player.xp} / ${player.xpToNext}</div></div>
+    <div class="list-item"><strong>HP</strong><div>${Math.floor(player.hp)} / ${player.maxHp}</div></div>
+    <div class="list-item"><strong>RADS</strong><div>${player.rads} / ${MAX_RADS}</div></div>
+    <div class="list-item"><strong>CAPS</strong><div>${player.caps}</div></div>
+    <div class="list-item"><strong>CLAIMED</strong><div>${player.claimed.size}</div></div>
+  `;
+}
+
+// renderItems
+async function renderItems() {
+  let html = '';
+  if (player.gear.length === 0) {
+    html = '<div class="list-item">Inventory empty – hunt rare locations!</div>';
+  } else {
+    player.gear.forEach((g, i) => {
+      const isEq = player.equipped[g.id];
+      const effStr = g.effects.map(e => `${e.type} +${e.val}`).join(', ');
+      html += `<div class="list-item">
+        <strong>${g.name}${isEq ? ' <span class="equipped">[EQUIPPED]</span>' : ''}</strong>
+        <div>
+          <button class="equip-btn" data-index="${i}">${isEq ? 'UNEQUIP' : 'EQUIP'}</button>
+          <small>${g.rarity.toUpperCase()} • ${effStr}</small>
+        </div>
+      </div>`;
+    });
+  }
+  document.getElementById('panelBody').innerHTML = html;
+
+  document.querySelectorAll('.equip-btn').forEach(btn => {
+    btn.onclick = async () => {
+      const i = parseInt(btn.dataset.index);
+      const gear = player.gear[i];
+      if (player.equipped[gear.id]) {
+        delete player.equipped[gear.id];
+      } else {
+        player.equipped[gear.id] = gear;
+      }
+      playSfx('sfxEquip', 0.4);
+      applyGearBonuses();
+      updateHPBar();
+      renderItems();
+      await fetch(`${API_BASE}/equip`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({equipped: Object.keys(player.equipped)})
+      });
+    };
+  });
+}
+
+// renderQuests
+async function renderQuests() {
+  if (allQuests.length === 0) {
+    try { allQuests = await (await fetch(`${API_BASE}/quests`)).json(); } catch {}
+  }
+  let html = '';
+  allQuests.forEach(q => {
+    const pq = player.quests.find(p => p.id === q.id) || {progress: 0, completed: false};
+    const status = pq.completed ? 'COMPLETED ✓' : `${pq.progress}/${q.objectives?.length || '?'}`;
+    html += `<div class="list-item"><strong>${q.name}</strong><div><small>${q.description}</small><br>Progress: ${status}</div></div>`;
+  });
+  document.getElementById('panelBody').innerHTML = html || '<div class="list-item">No quests available</div>';
+}
+
+// renderShop
+async function renderShop() {
+  const shopItems = [
+    {id: 'radaway', name: 'RadAway', desc: 'Clear 300 RADS', price: 150},
+    {id: 'stimpak', name: 'Stimpak', desc: '+50 HP', price: 100},
+    {id: 'caps100', name: '100 CAPS Booster', desc: 'Instant CAPS', price: 50},
+    {id: 'xpboost', name: 'XP Booster x2 (1h)', desc: 'Double XP gains', price: 200}
+  ];
+
+  let html = '<div class="list-item"><strong>SCAVENGER\'S EXCHANGE</strong></div>';
+  shopItems.forEach(item => {
+    const affordable = player.caps >= item.price;
+    html += `<div class="list-item">
+      <strong>${item.name}</strong>
+      <div>
+        <small>${item.desc}<br>Price: ${item.price} CAPS</small><br>
+        <button class="shop-buy-btn" data-id="${item.id}" ${!affordable ? 'disabled' : ''}>BUY</button>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('panelBody').innerHTML = html;
+
+  document.querySelectorAll('.shop-buy-btn').forEach(btn => {
+    btn.onclick = async () => {
+      const itemId = btn.dataset.id;
+      playSfx('sfxButton', 0.4);
+      try {
+        const res = await fetch(`${API_BASE}/shop/buy`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({wallet: wallet.publicKey.toBase58(), item: itemId})
+        });
+        const data = await res.json();
+        if (data.success) {
+          player.caps = data.caps;
+          if (itemId === 'radaway') player.rads = Math.max(0, player.rads - 300);
+          if (itemId === 'stimpak') player.hp = Math.min(player.maxHp, player.hp + 50);
+          updateHPBar();
+          renderShop();
+          setStatus(`${item.name} purchased!`, true, 8000);
+          playSfx('sfxEquip', 0.5);
+        } else {
+          setStatus(data.error || 'Not enough CAPS', false);
+        }
+      } catch {
+        setStatus('Shop offline', false);
+      }
+    };
+  });
+}
 
 // Radiation drain
 setInterval(() => {
@@ -196,7 +349,95 @@ setInterval(() => {
   }
 }, 30000);
 
-// attemptClaim – as in your code (full with XP, gear drop, etc.)
+// attemptClaim
+async function attemptClaim(loc) {
+  if (lastAccuracy > CLAIM_RADIUS || !playerLatLng || !wallet || player.claimed.has(loc.n)) {
+    setStatus("Cannot claim", false);
+    return;
+  }
+  const dist = map.distance(playerLatLng, L.latLng(loc.lat, loc.lng));
+  if (dist > CLAIM_RADIUS) {
+    setStatus(`Too far (${Math.round(dist)}m)`, false);
+    return;
+  }
+
+  const message = `Claim:${loc.n}:${Date.now()}`;
+  try {
+    const encoded = new TextEncoder().encode(message);
+    const signed = await wallet.signMessage(encoded);
+    const signature = bs58.encode(signed);
+
+    const res = await fetch(`${API_BASE}/find-loot`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        wallet: wallet.publicKey.toBase58(),
+        spot: loc.n,
+        message,
+        signature
+      })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      const oldLvl = player.lvl;
+
+      player.caps = data.totalCaps || player.caps;
+      player.claimed.add(loc.n);
+      markers[loc.n]?.setStyle({fillColor: '#003300', fillOpacity: 0.5});
+
+      // Rad gain
+      const baseRad = loc.rarity === 'legendary' ? 120 : loc.rarity === 'epic' ? 80 : loc.rarity === 'rare' ? 50 : 20;
+      player.rads = Math.min(MAX_RADS, player.rads + Math.max(5, baseRad - player.radResist / 3));
+
+      // XP & Leveling
+      const xpGain = loc.rarity === 'legendary' ? 150 : loc.rarity === 'epic' ? 100 : loc.rarity === 'rare' ? 60 : 30;
+      player.xp = (data.xp || player.xp) + xpGain;
+
+      while (player.xp >= player.xpToNext) {
+        player.xp -= player.xpToNext;
+        player.lvl++;
+        player.xpToNext = Math.floor(player.xpToNext * 1.5);
+        player.maxHp += 10;
+        player.hp = player.maxHp;
+        setStatus(`LEVEL UP! Level ${player.lvl}`, true, 12000);
+        playSfx('sfxLevelUp', 0.8);
+      }
+
+      // Gear drop
+      let gearDropped = false;
+      const chance = DROP_CHANCE[loc.rarity] || DROP_CHANCE.common;
+      if (Math.random() < chance) {
+        const newGear = generateGearDrop(loc.rarity || 'common');
+        player.gear.push(newGear);
+        setStatus(`GEAR DROP! ${newGear.name} (${newGear.rarity.toUpperCase()})`, true, 15000);
+        playSfx('sfxGearDrop', 0.7);
+        gearDropped = true;
+        fetch(`${API_BASE}/mint-gear`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(newGear)});
+      }
+
+      // Quests
+      if (data.quests) player.quests = data.quests;
+
+      playSfx('sfxClaim', 0.5);
+      renderQuests();
+      renderItems();
+      renderStats();
+      applyGearBonuses();
+      updateHPBar();
+
+      document.getElementById('mintTitle').textContent = gearDropped && player.gear[player.gear.length-1].rarity === 'legendary' ? 'LEGENDARY LOOT!' : 'LOOT CLAIMED';
+      document.getElementById('mintMsg').textContent = gearDropped ? `${player.gear[player.gear.length-1].name} added!` : `+${data.capsFound || 0} CAPS`;
+      document.getElementById('mintModal').classList.add('open');
+
+      checkTerminalAccess();
+    } else {
+      setStatus(data.error || "Claim failed", false);
+    }
+  } catch (err) {
+    setStatus("Claim error", false);
+  }
+}
 
 // Map init
 async function initMap() {
