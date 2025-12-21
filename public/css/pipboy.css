@@ -75,7 +75,25 @@
   opacity: 0.35;
   border-radius: 16px;
 }
-
+/* /css/pipboy.css – Add/replace with these shop styles (plus previous map/equip styles) */
+.shop-buy-btn {
+  background: #001100;
+  color: #00ff41;
+  border: 1px solid #00ff41;
+  padding: 6px 12px;
+  font-size: 0.9em;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.shop-buy-btn:hover:not(:disabled) {
+  background: #003300;
+}
+.shop-buy-btn:disabled {
+  color: #003300;
+  border-color: #003300;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 /* Static noise overlay */
 .static-noise {
   position: absolute;
