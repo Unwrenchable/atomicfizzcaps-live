@@ -1,0 +1,33 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+fizzcaps_onchain = "GDGexnGtZPoD1aHv6qg8hjeSspujwWnxJCtdrrj2gKpP"  # Temporary — will update after first build
+
+[programs.devnet]
+fizzcaps_onchain = "ReplaceWithYourDevnetProgramIDAfterDeploy"
+
+[programs.mainnet-beta]
+fizzcaps_onchain = "ReplaceWithYourMainnetProgramIDAfterDeploy"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"  # Change if your wallet is elsewhere
+
+[test]
+startup_wait = 5000
+shutdown_wait = 2000
+
+[test.validator]
+url = "https://api.devnet.solana.com"
+
+[[test.genesis]]
+path = "target/deploy/fizzcaps_onchain.so"
+balance = 1000000000000
+
+[scripts]
+test = "yarn install && yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

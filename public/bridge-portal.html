@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atomic Fizz Caps Bridge - Wormhole</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@wormhole-foundation/connect@latest/dist/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=OCR+A+Std:wght@400&display=swap">
+  
+  <style>
+    body {
+      font-family: 'OCR A Std', 'Courier New', monospace;
+      background: #000;
+      color: #00ff00;
+      text-align: center;
+      margin: 0;
+      padding: 15px;
+      line-height: 1.4;
+      letter-spacing: 1px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin: 10px 0;
+      text-shadow: 0 0 15px #00ff00;
+      letter-spacing: 3px;
+    }
+    p {
+      font-size: 1em;
+      margin: 10px auto 20px;
+      max-width: 800px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+    .bridge-container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(0,20,0,0.8);
+      border: 3px solid #00ff00;
+      box-shadow: 0 0 25px #00ff00, inset 0 0 15px #003300;
+    }
+    footer p {
+      font-size: 0.9em;
+      margin-top: 20px;
+      opacity: 0.9;
+    }
+    #wormhole-connect { margin: 0 auto; font-family: inherit; }
+  </style>
+</head>
+<body>
+  <h1>ATOMIC FIZZ CAPS BRIDGE</h1>
+  <p>BRIDGE FIZZ TOKEN & NFTS – SOLANA ↔ ETHEREUM ↔ BASE ↔ BNB ↔ XRPL ↔ 35+ CHAINS</p>
+  
+  <div class="bridge-container">
+    <div id="wormhole-connect"></div>
+  </div>
+
+  <script type="module">
+    import { WormholeConnect } from 'https://cdn.jsdelivr.net/npm/@wormhole-foundation/connect@latest/dist/esm/index.js';
+
+    WormholeConnect({
+      el: '#wormhole-connect',
+      env: 'mainnet', // 'testnet' for testing
+      theme: 'dark',
+      chains: [
+        'Solana','Ethereum','Base','Bsc','Arbitrum','Optimism','Polygon','Avalanche',
+        'Sui','Aptos','Sei','Scroll','Mantle','Blast','Linea','Ink','Unichain',
+        'Xrpl'
+      ],
+      tokens: ['fizzQBcaFLKjCoZ8Ppfkw2Xa7vH2pmW4FC6C74NpJmw'], // Your token mint – auto-featured
+      defaultTokens: {
+        Solana: ['fizzQBcaFLKjCoZ8Ppfkw2Xa7vH2pmW4FC6C74NpJmw']
+      },
+    });
+  </script>
+
+  <footer>
+    <p>CONNECT WALLET > FIZZ TOKEN AUTO-SELECTED > BRIDGE. VAULT-TEC APPROVED.</p>
+  </footer>
+</body>
+</html>

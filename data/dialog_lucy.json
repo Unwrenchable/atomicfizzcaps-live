@@ -1,0 +1,98 @@
+{
+  "id": "dialog_lucy",
+  "npc": "Lucy \"Sparkplug\" Vance",
+  "title": "The Scavenger Queen",
+  "description": "Dialog nodes for Lucy Vance, the fast-talking scavenger queen who trades junk, secrets, and favors across the Mojave.",
+
+  "intro": {
+    "id": "lucy_intro",
+    "conditions": ["!flag:met_lucy"],
+    "text": "Well, look at you — fresh out of a Vault or just bad at not dying?<br><br>Name’s Lucy. Most folks call me Sparkplug. The smart ones call me when something breaks.",
+    "set_flags": ["met_lucy"]
+  },
+
+  "knowledge_nodes": [
+    {
+      "id": "lucy_knows_jax",
+      "conditions": ["flag:met_jax", "!flag:lucy_comment_jax"],
+      "text": "You’ve been chatting with the static man?<br><br>Jax used to fix slot machines on the Strip. Now he *is* one.",
+      "set_flags": ["lucy_comment_jax"]
+    },
+    {
+      "id": "lucy_knows_mara",
+      "conditions": ["flag:met_mara", "!flag:lucy_comment_mara"],
+      "text": "Mara? Oh yeah, the Rad-Witch.<br><br>Smart lady. Terrible bedside manner. Don’t let her poke you unless you want extra limbs.",
+      "set_flags": ["lucy_comment_mara"]
+    },
+    {
+      "id": "lucy_knows_rex",
+      "conditions": ["flag:met_rex", "!flag:lucy_comment_rex"],
+      "text": "Rex still playing soldier at Hoover Dam?<br><br>He means well. World doesn’t care.",
+      "set_flags": ["lucy_comment_rex"]
+    },
+    {
+      "id": "lucy_knows_mother",
+      "conditions": ["flag:met_mother", "!flag:lucy_comment_mother"],
+      "text": "Mother talked to you?<br><br>Yeah, she tried recruiting me once. I told her I don’t work for machines unless they pay in chips.",
+      "set_flags": ["lucy_comment_mother"]
+    }
+  ],
+
+  "emotional_nodes": [
+    {
+      "id": "lucy_player_broke",
+      "conditions": ["stat:caps<=5", "!flag:lucy_roasted_broke"],
+      "text": "You’re broke *and* glowing. That’s a rough combo, rookie.<br><br>Good news: I specialize in rough combos.",
+      "set_flags": ["lucy_roasted_broke"]
+    },
+    {
+      "id": "lucy_player_rich",
+      "conditions": ["stat:caps>=5000", "!flag:lucy_comment_rich"],
+      "text": "Well damn, look at you — walking wallet with legs.<br><br>Try not to get mugged before you spend some of that with me.",
+      "set_flags": ["lucy_comment_rich"]
+    }
+  ],
+
+  "quest_nodes": [
+    {
+      "id": "lucy_offer_queen",
+      "conditions": ["!flag:sq_lucy_queen_of_junk_taken"],
+      "text": "Someone lifted a crate of my good stuff.<br><br>Pre-war parts. The kind that still hum when you touch them.<br><br>You track it down — Goodsprings, Nipton, Freeside — and we both walk away richer.",
+      "offers_quest": "sq_lucy_queen_of_junk",
+      "set_flags": ["sq_lucy_queen_of_junk_taken"]
+    }
+  ],
+
+  "wildcards": [
+    {
+      "id": "lucy_caps",
+      "keywords": ["caps", "trade", "shop", "buy", "sell"],
+      "text": "CAPS, junk, secrets — it all spends the same in the right hands.<br><br>Lucky for you, those hands are mine."
+    },
+    {
+      "id": "lucy_junk",
+      "keywords": ["junk", "scrap", "parts"],
+      "text": "Junk is just treasure that hasn’t met the right idiot yet.<br><br>And trust me, the Mojave is full of idiots."
+    },
+    {
+      "id": "lucy_strip",
+      "keywords": ["strip", "casino", "chips"],
+      "text": "The Strip? Oh yeah, I used to run scams there.<br><br>Turns out casinos don’t like it when you win *too* much."
+    },
+    {
+      "id": "lucy_scavenger",
+      "keywords": ["scavenge", "scavenger", "loot"],
+      "text": "Scavenging is easy.<br><br>Finding the good stuff before someone shoots you for it — that’s the art."
+    },
+    {
+      "id": "lucy_weapon",
+      "keywords": ["weapon", "gun", "armor"],
+      "text": "If it shoots, stabs, or explodes, I can probably get you one.<br><br>Or fix the one you broke."
+    }
+  ],
+
+  "fallback": {
+    "id": "lucy_fallback",
+    "text": "Come back when you’ve got more stories or more junk. Preferably both."
+  }
+}

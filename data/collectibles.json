@@ -1,0 +1,118 @@
+{
+  "id": "collectibles_pack_v1",
+  "description": "Additive lore collectibles for Atomic Fizz Caps. All entries are tied to real POIs from locations.json.",
+
+  "collectibles": [
+    {
+      "id": "col_ranger_distress_1",
+      "type": "audio_log",
+      "title": "RANGER DISTRESS CALL // LAST STAND",
+      "poi": "Dead Wind Cavern",
+      "content": "This is Ranger Holt at checkpoint Bravo.\nIf anyone hears this, the things in the cavern aren’t animals.\nThey move like a firing squad."
+    },
+
+    {
+      "id": "col_fizz_memo_1",
+      "type": "corp_memo",
+      "title": "INTERNAL MEMO // FIZZ VAULT PILOT",
+      "poi": "Vault 34",
+      "content": "Team,\nFocus groups LOVE the idea of 'emergency refreshment shelters.'\nDo not use the word 'bunker' in public materials.\nLegal says it sounds 'too honest.'"
+    },
+
+    {
+      "id": "col_lucy_journal_1",
+      "type": "journal",
+      "title": "SPARKPLUG'S JOURNAL // ENTRY 3",
+      "poi": "Goodsprings Saloon",
+      "content": "Day 34 since the Strip went quiet.\nSlot machines don’t argue when you take their guts.\nPeople do.\nJunk never lies to you."
+    },
+
+    {
+      "id": "col_pitt_scrap_note",
+      "type": "artifact_note",
+      "title": "FORGEMASTER NOTE // THE PITT",
+      "poi": "The Pitt",
+      "content": "The furnaces burn hotter every day.\nSomeone keeps sending us blueprints with no signatures.\nFeels like a trap.\nBut the metal sings."
+    },
+
+    {
+      "id": "col_chernobyl_log",
+      "type": "field_log",
+      "title": "FIELD LOG // CHERNOBYL PRIPYAT",
+      "poi": "Chernobyl Pripyat",
+      "content": "Radiation here behaves like weather.\nIt shifts, swirls, and gathers.\nSometimes it feels like it’s watching."
+    },
+
+    {
+      "id": "col_fukushima_log",
+      "type": "field_log",
+      "title": "FIELD LOG // FUKUSHIMA DAIICHI",
+      "poi": "Fukushima Daiichi",
+      "content": "The reactor groans at night.\nNot metal fatigue.\nSomething deeper.\nSomething alive."
+    },
+
+    {
+      "id": "col_trinity_glass_note",
+      "type": "artifact_note",
+      "title": "TRINITY SITE // GLASS SHARD NOTE",
+      "poi": "Trinity Site",
+      "content": "The sand fused into glass the day the world changed.\nSome shards hum when held.\nNo one knows why."
+    },
+
+    {
+      "id": "col_glow_research",
+      "type": "research_note",
+      "title": "RESEARCH NOTE // THE GLOW",
+      "poi": "Glow",
+      "content": "The glow pulses in cycles.\nNot random.\nNot natural.\nSomething beneath the surface is breathing."
+    },
+
+    {
+      "id": "col_reactor_core_note",
+      "type": "research_note",
+      "title": "RESEARCH NOTE // GECKO REACTOR",
+      "poi": "Gecko Reactor",
+      "content": "Prototype energy signatures detected.\nSimilar to Helios One, but older.\nMore primal.\nMore dangerous."
+    },
+
+    {
+      "id": "col_new_reno_chip_log",
+      "type": "journal",
+      "title": "NEW RENO // DEALER'S LEDGER",
+      "poi": "New Reno",
+      "content": "House always wins.\nUnless you cheat.\nThen House sends someone to make sure you don’t win again."
+    },
+
+    {
+      "id": "col_dunwich_tome_page",
+      "type": "lore_page",
+      "title": "DUNWICH BUILDING // TOME FRAGMENT",
+      "poi": "Dunwich Building",
+      "content": "The walls whisper.\nThe floors breathe.\nThe shadows remember."
+    },
+
+    {
+      "id": "col_mariposa_patch_note",
+      "type": "military_note",
+      "title": "MARIPOSA BASE // PATCH NOTE",
+      "poi": "Mariposa Base",
+      "content": "Orders unclear.\nExperiments classified.\nPersonnel missing.\nRecommend evacuation.\nRequest denied."
+    },
+
+    {
+      "id": "col_yucca_mountain_log",
+      "type": "research_log",
+      "title": "YUCCA MOUNTAIN // PROTOTYPE LOG",
+      "poi": "Yucca Mountain",
+      "content": "Prototype X-01 frame unstable.\nEnergy feedback loop detected.\nRecommend shutdown.\nOverride received: CONTINUE."
+    },
+
+    {
+      "id": "col_nevada_test_site_report",
+      "type": "military_report",
+      "title": "NEVADA TEST SITE // REPORT 22",
+      "poi": "Nevada Test Site",
+      "content": "Tesla Cannon prototype successful.\nCollateral damage unacceptable.\nRecommend containment.\nRequest ignored."
+    }
+  ]
+}

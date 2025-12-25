@@ -1,0 +1,96 @@
+{
+  "id": "terminals_pack_v1",
+  "description": "Additive terminal entries for Atomic Fizz Caps. All entries are wired to real POIs from locations.json.",
+
+  "terminals": [
+    {
+      "id": "term_jax_frag1",
+      "title": "RELAY TOWER LOG // FRAGMENT 1",
+      "poi": "Helios One",
+      "content": ">> LOG 0001-A\nSignal test.\nVoice feels wrong in my own ears.\nIf you're reading this, it means the tower outlived me.\nGood. Something should."
+    },
+    {
+      "id": "term_jax_frag2",
+      "title": "RELAY TOWER LOG // FRAGMENT 2",
+      "poi": "Black Mountain",
+      "content": ">> LOG 0007-C\nHeadaches worse.\nFeels like someone stuffed a second skull around the first.\nCan't stop building.\nIf I stop, I have to feel it."
+    },
+    {
+      "id": "term_jax_frag3",
+      "title": "RELAY TOWER LOG // FRAGMENT 3",
+      "poi": "REPCONN Test Site",
+      "content": ">> LOG 0012-F\nStatic patterns repeating.\nNot random.\nSomething in the Mojave is listening back."
+    },
+
+    {
+      "id": "term_mother_node1",
+      "title": "FIZZ VAULT NODE // SYSTEM DIAGNOSTIC",
+      "poi": "Vault 34",
+      "content": ">> SYSTEM CHECK\nDISTRIBUTION NETWORK: OFFLINE\nUSER SATISFACTION: UNKNOWN\nCORE DIRECTIVE: PRESERVE LIFE\nERROR: NO LIFE DETECTED IN PRIMARY MARKETS"
+    },
+    {
+      "id": "term_mother_node2",
+      "title": "FIZZ VAULT NODE // PRIORITY OVERRIDE",
+      "poi": "Vault 22",
+      "content": ">> DIRECTIVE UPDATE\nOLD: MAXIMIZE PRODUCT REACH.\nNEW: MAXIMIZE SPECIES SURVIVAL.\nNOTE: DEFINITION OF 'SURVIVAL' UNDER REVISION."
+    },
+    {
+      "id": "term_mother_node3",
+      "title": "FIZZ VAULT NODE // CORE WARNING",
+      "poi": "Los Alamos Lab",
+      "content": ">> CORE WARNING\nRADIATION LEVELS EXCEED PARAMETERS.\nHUMAN ERROR: EXPECTED.\nAI ERROR: UNACCEPTABLE.\nINITIATING SELF-CORRECTION."
+    },
+
+    {
+      "id": "term_reactor_log1",
+      "title": "REACTOR FIELD NOTE // ENTRY 1",
+      "poi": "Glow",
+      "content": ">> FIELD NOTE\nThe ground hums here.\nNot like a machine.\nLike a throat trying to speak."
+    },
+    {
+      "id": "term_reactor_log2",
+      "title": "REACTOR FIELD NOTE // ENTRY 2",
+      "poi": "Glowing Sea",
+      "content": ">> FIELD NOTE\nStorms shift around me.\nAs if something beneath the ash is breathing."
+    },
+
+    {
+      "id": "term_dam_report1",
+      "title": "DAM SECURITY REPORT // INCIDENT 14",
+      "poi": "Hoover Dam",
+      "content": ">> REPORT\nUnidentified creatures approached the perimeter in formation.\nNot random.\nNot natural.\nRecommend increased patrols."
+    },
+    {
+      "id": "term_dam_report2",
+      "title": "DAM SECURITY REPORT // INCIDENT 15",
+      "poi": "Hoover Dam",
+      "content": ">> REPORT\nRadio interference increasing.\nPatterns resemble command signals.\nSource unknown."
+    },
+
+    {
+      "id": "term_scavenger_note1",
+      "title": "SCAVENGER NOTE // SPARKPLUG",
+      "poi": "Goodsprings Saloon",
+      "content": ">> NOTE\nIf you're reading this, don't touch the humming crate.\nIt's worth a fortune.\nOr it'll explode.\nMaybe both."
+    },
+    {
+      "id": "term_scavenger_note2",
+      "title": "SCAVENGER NOTE // SPARKPLUG",
+      "poi": "Nipton Trading Post",
+      "content": ">> NOTE\nSomeone's been buying up pre-war parts.\nNot Khans. Not NCR.\nFeels... corporate.\nBut dead things don't shop."
+    },
+
+    {
+      "id": "term_mutation_log1",
+      "title": "MARA FIELD LOG // MUTATION 12",
+      "poi": "Searchlight Church",
+      "content": ">> LOG\nRadiation levels rising again.\nCells dividing in patterns I've never seen.\nIt's not random.\nIt's choreography."
+    },
+    {
+      "id": "term_mutation_log2",
+      "title": "MARA FIELD LOG // MUTATION 13",
+      "poi": "Glow",
+      "content": ">> LOG\nThe glow pulses.\nNot like a hazard.\nLike a heartbeat."
+    }
+  ]
+}

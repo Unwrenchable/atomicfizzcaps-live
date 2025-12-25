@@ -1,0 +1,162 @@
+{
+  "id": "encounters_pack_v1",
+  "description": "Additive encounters tied to real POIs from locations.json. These trigger on first visit, repeat visits, or special conditions.",
+  "encounters": [
+    {
+      "id": "enc_rex_dam_greeting",
+      "poi": "Hoover Dam",
+      "trigger": "first_visit",
+      "dialog": "Captain Rex squints at you from the shadow of the concrete wall. \"Another stray. Hope you bite raiders and not my people.\""
+    },
+    {
+      "id": "enc_dam_signal_spike",
+      "poi": "Hoover Dam",
+      "trigger": "repeat_visit",
+      "dialog": "Your Pip-Boy crackles. A burst of static forms a pattern — almost like coordinates."
+    },
+    {
+      "id": "enc_glow_warning",
+      "poi": "Glow",
+      "trigger": "first_visit",
+      "dialog": "Your Geiger counter screams to life. For a moment, you swear the clicks form words."
+    },
+    {
+      "id": "enc_glow_echo",
+      "poi": "Glow",
+      "trigger": "repeat_visit",
+      "dialog": "The air hums. The ground vibrates. Something beneath the soil is awake."
+    },
+    {
+      "id": "enc_glowing_sea_storm",
+      "poi": "Glowing Sea",
+      "trigger": "first_visit",
+      "dialog": "A radstorm rolls across the horizon, shifting unnaturally as if avoiding you."
+    },
+    {
+      "id": "enc_glowing_sea_whisper",
+      "poi": "Glowing Sea",
+      "trigger": "repeat_visit",
+      "dialog": "The storm whispers. Not wind. Not static. Something else."
+    },
+    {
+      "id": "enc_dead_wind_cavern_roar",
+      "poi": "Dead Wind Cavern",
+      "trigger": "first_visit",
+      "dialog": "A deep, resonant roar echoes from the cavern. Something massive is moving inside."
+    },
+    {
+      "id": "enc_dead_wind_cavern_tracks",
+      "poi": "Dead Wind Cavern",
+      "trigger": "repeat_visit",
+      "dialog": "Fresh claw marks line the rock. Whatever lives here is hunting."
+    },
+    {
+      "id": "enc_deathclaw_promontory_shadow",
+      "poi": "Deathclaw Promontory",
+      "trigger": "first_visit",
+      "dialog": "A shadow crosses the ridge — too large, too fast. You are not alone."
+    },
+    {
+      "id": "enc_deathclaw_promontory_ambush",
+      "poi": "Deathclaw Promontory",
+      "trigger": "repeat_visit",
+      "dialog": "The rocks shift. Something is stalking you from above."
+    },
+    {
+      "id": "enc_trinity_site_glass",
+      "poi": "Trinity Site",
+      "trigger": "first_visit",
+      "dialog": "The sand crunches like glass beneath your boots. A faint green glow pulses in the crater."
+    },
+    {
+      "id": "enc_trinity_site_signal",
+      "poi": "Trinity Site",
+      "trigger": "repeat_visit",
+      "dialog": "Your Pip-Boy picks up a faint signal — rhythmic, deliberate, almost like Morse code."
+    },
+    {
+      "id": "enc_los_alamos_lab_alarm",
+      "poi": "Los Alamos Lab",
+      "trigger": "first_visit",
+      "dialog": "A long-dead alarm system flickers to life as you enter. Something in the lab recognizes you."
+    },
+    {
+      "id": "enc_los_alamos_lab_core",
+      "poi": "Los Alamos Lab",
+      "trigger": "repeat_visit",
+      "dialog": "A terminal hums softly. The screen flashes: \"CORE TEMPERATURE: RISING\"."
+    },
+    {
+      "id": "enc_chernobyl_pripyat_echo",
+      "poi": "Chernobyl Pripyat",
+      "trigger": "first_visit",
+      "dialog": "The wind carries a metallic taste. A distant echo bounces through the empty buildings."
+    },
+    {
+      "id": "enc_chernobyl_pripyat_figure",
+      "poi": "Chernobyl Pripyat",
+      "trigger": "repeat_visit",
+      "dialog": "A figure stands in a window for a moment — then vanishes when you blink."
+    },
+    {
+      "id": "enc_fukushima_daiichi_warning",
+      "poi": "Fukushima Daiichi",
+      "trigger": "first_visit",
+      "dialog": "Your Pip-Boy flashes a radiation warning so intense it nearly overloads the screen."
+    },
+    {
+      "id": "enc_fukushima_daiichi_core",
+      "poi": "Fukushima Daiichi",
+      "trigger": "repeat_visit",
+      "dialog": "A deep rumble shakes the ground. Something beneath the reactor is still alive."
+    },
+    {
+      "id": "enc_black_mountain_broadcast",
+      "poi": "Black Mountain",
+      "trigger": "first_visit",
+      "dialog": "A distorted broadcast cuts through your radio: \"HELLO, WASTELANDERS!\""
+    },
+    {
+      "id": "enc_black_mountain_static",
+      "poi": "Black Mountain",
+      "trigger": "repeat_visit",
+      "dialog": "The static forms a voice — faint, broken, familiar. Jax?"
+    },
+    {
+      "id": "enc_goodsprings_saloon_note",
+      "poi": "Goodsprings Saloon",
+      "trigger": "first_visit",
+      "dialog": "A scrap of paper sits on the bar: \"DON'T TOUCH THE HUMMING CRATE — SPARKPLUG\"."
+    },
+    {
+      "id": "enc_goodsprings_saloon_rumor",
+      "poi": "Goodsprings Saloon",
+      "trigger": "repeat_visit",
+      "dialog": "A drunk mutters about a hidden stash under the floorboards — might be worth a look."
+    },
+    {
+      "id": "enc_nipton_trading_post_smoke",
+      "poi": "Nipton Trading Post",
+      "trigger": "first_visit",
+      "dialog": "Smoke rises from behind the building. Something was burned recently."
+    },
+    {
+      "id": "enc_nipton_trading_post_ashes",
+      "poi": "Nipton Trading Post",
+      "trigger": "repeat_visit",
+      "dialog": "The ashes reveal a melted pre-war lockbox. Could be loot inside."
+    },
+    {
+      "id": "enc_freeside_market_whisper",
+      "poi": "Freeside Market",
+      "trigger": "first_visit",
+      "dialog": "A merchant whispers: \"Someone’s buying up pre-war tech. Paying in caps and silence.\""
+    },
+    {
+      "id": "enc_freeside_market_deal",
+      "poi": "Freeside Market",
+      "trigger": "repeat_visit",
+      "dialog": "The merchant offers a deal: a rare Pip-Boy mod for 200 CAPS."
+    }
+  ]
+}

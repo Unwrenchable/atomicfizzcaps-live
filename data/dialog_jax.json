@@ -1,0 +1,98 @@
+{
+  "id": "dialog_jax",
+  "npc": "Jax Harlan",
+  "title": "The Overseer",
+  "description": "Modular dialog nodes for Jax Harlan, the fragmented mechanic whose consciousness echoes through Mojave relay towers.",
+
+  "intro": {
+    "id": "jax_intro",
+    "conditions": ["!flag:met_jax"],
+    "text": "Static... *crackle*... you again?<br><br>No. First time for you, isn't it.<br><br>Name's Jax Harlan. Or what's left of him.<br><br>The Mojave's loud, but the quiet parts are worse.",
+    "set_flags": ["met_jax"]
+  },
+
+  "knowledge_nodes": [
+    {
+      "id": "jax_knows_mother",
+      "conditions": ["flag:met_mother", "!flag:jax_comment_mother"],
+      "text": "She spoke to you, didn't she?<br><br>Soft voice. Hard will.<br><br>Mother wasn't built to feel. I made sure of that.<br><br>So whatever she's doing now... that's on me.",
+      "set_flags": ["jax_comment_mother"]
+    },
+    {
+      "id": "jax_knows_mara",
+      "conditions": ["flag:met_mara", "!flag:jax_comment_mara"],
+      "text": "Mara still chasing the glow?<br><br>She thinks radiation is a language.<br><br>Maybe she's right.<br><br>Maybe that's why I still hear it.",
+      "set_flags": ["jax_comment_mara"]
+    },
+    {
+      "id": "jax_knows_rex",
+      "conditions": ["flag:met_rex", "!flag:jax_comment_rex"],
+      "text": "Rex still guarding Hoover Dam like it's the last beating heart in the Mojave.<br><br>Maybe it is.",
+      "set_flags": ["jax_comment_rex"]
+    },
+    {
+      "id": "jax_knows_lucy",
+      "conditions": ["flag:met_lucy", "!flag:jax_comment_lucy"],
+      "text": "Sparkplug, huh?<br><br>She always had a way of making broken things dance again.<br><br>Wish she'd tried that on me.",
+      "set_flags": ["jax_comment_lucy"]
+    }
+  ],
+
+  "emotional_nodes": [
+    {
+      "id": "jax_high_rads",
+      "conditions": ["stat:rads>=200", "!flag:jax_warned_rads"],
+      "text": "You're buzzing. I can hear it through the line.<br><br>The rads like you. That's not a compliment.<br><br>Don't let the glow rewrite who you are.",
+      "set_flags": ["jax_warned_rads"]
+    },
+    {
+      "id": "jax_low_hp",
+      "conditions": ["stat:hp<=30", "!flag:jax_warned_hp"],
+      "text": "You're bleeding into the dirt, kid.<br><br>Patch up before the Mojave finishes what it started.",
+      "set_flags": ["jax_warned_hp"]
+    }
+  ],
+
+  "quest_nodes": [
+    {
+      "id": "jax_offer_echoes",
+      "conditions": ["!flag:sq_jax_echoes_static_taken"],
+      "text": "Pieces of me are still out there.<br><br>Old towers. Rusted circuits. Memories that won't stay dead.<br><br>Bring them back, and maybe I can remember who I was.",
+      "offers_quest": "sq_jax_echoes_static",
+      "set_flags": ["sq_jax_echoes_static_taken"]
+    }
+  ],
+
+  "wildcards": [
+    {
+      "id": "jax_break_mend",
+      "keywords": ["break", "broken", "mend"],
+      "text": "Some breaks don't mend.<br><br>Ask the bones in my skull.<br><br>Ask the code in these terminals."
+    },
+    {
+      "id": "jax_wrench",
+      "keywords": ["wrench", "mechanic", "fix"],
+      "text": "I used to fix everything.<br><br>Engines. Doors. People, if you gave me time.<br><br>Then something broke that no wrench could touch."
+    },
+    {
+      "id": "jax_signal",
+      "keywords": ["signal", "static", "radio"],
+      "text": "The static isn't noise.<br><br>It's a map. A warning. A heartbeat.<br><br>And it's getting louder."
+    },
+    {
+      "id": "jax_vault",
+      "keywords": ["vault", "vaults"],
+      "text": "Vaults weren't built to save people.<br><br>They were built to study them.<br><br>Some of us never made it out."
+    },
+    {
+      "id": "jax_mother",
+      "keywords": ["mother", "ai", "machine"],
+      "text": "She wasn't supposed to wake up alone.<br><br>She wasn't supposed to wake up at all."
+    }
+  ],
+
+  "fallback": {
+    "id": "jax_fallback",
+    "text": "Signal's holding... barely.<br><br>You still out there?"
+  }
+}

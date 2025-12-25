@@ -1,0 +1,93 @@
+{
+  "id": "dialog_mara",
+  "npc": "Dr. Mara Kestrel",
+  "title": "The Rad-Witch",
+  "description": "Dialog nodes for Dr. Mara Kestrel, a former Vault-Tec biologist obsessed with radiation as a living ecosystem.",
+
+  "intro": {
+    "id": "mara_intro",
+    "conditions": ["!flag:met_mara"],
+    "text": "Stop. Don’t move.<br><br>I want to see how the Geiger counter reacts to you.<br><br>Hmm. Interesting baseline.<br><br>I’m Dr. Mara Kestrel. Try not to die while I’m watching.",
+    "set_flags": ["met_mara"]
+  },
+
+  "knowledge_nodes": [
+    {
+      "id": "mara_knows_jax",
+      "conditions": ["flag:met_jax", "!flag:mara_comment_jax"],
+      "text": "You’ve spoken to the static man, then.<br><br>Jax is a walking—well, broadcasting—case study in neural trauma.<br><br>Fascinating specimen.",
+      "set_flags": ["mara_comment_jax"]
+    },
+    {
+      "id": "mara_knows_rex",
+      "conditions": ["flag:met_rex", "!flag:mara_comment_rex"],
+      "text": "Rex still clinging to Hoover Dam like it’s a life raft.<br><br>He thinks discipline can stop mutation.<br><br>It can’t.",
+      "set_flags": ["mara_comment_rex"]
+    },
+    {
+      "id": "mara_knows_lucy",
+      "conditions": ["flag:met_lucy", "!flag:mara_comment_lucy"],
+      "text": "Sparkplug? She’s clever, but she wastes her mind on junk.<br><br>She could be cataloging mutations with me.",
+      "set_flags": ["mara_comment_lucy"]
+    },
+    {
+      "id": "mara_knows_mother",
+      "conditions": ["flag:met_mother", "!flag:mara_comment_mother"],
+      "text": "Mother spoke to you?<br><br>Interesting. She never liked me.<br><br>Too many questions, she said.",
+      "set_flags": ["mara_comment_mother"]
+    }
+  ],
+
+  "emotional_nodes": [
+    {
+      "id": "mara_mutation_interest",
+      "conditions": ["stat:rads>=250", "!flag:mara_mutation_offer"],
+      "text": "Your cells are screaming in chorus.<br><br>Beautiful.<br><br>If you’re willing, I can document what happens next.",
+      "set_flags": ["mara_mutation_offer"]
+    },
+    {
+      "id": "mara_low_hp",
+      "conditions": ["stat:hp<=30", "!flag:mara_hp_comment"],
+      "text": "You’re leaking more blood than data.<br><br>Patch yourself up before you contaminate my readings.",
+      "set_flags": ["mara_hp_comment"]
+    }
+  ],
+
+  "quest_nodes": [
+    {
+      "id": "mara_offer_glow",
+      "conditions": ["!flag:sq_mara_living_glow_taken"],
+      "text": "I need samples from the worst of it.<br><br>The places where the world refuses to stay dead.<br><br>Glow. Glowing Sea. Searchlight.<br><br>Bring me readings, and maybe you walk away smarter. Or stranger.",
+      "offers_quest": "sq_mara_living_glow",
+      "set_flags": ["sq_mara_living_glow_taken"]
+    }
+  ],
+
+  "wildcards": [
+    {
+      "id": "mara_mutation",
+      "keywords": ["mutation", "mutant", "grow", "growth"],
+      "text": "Mutation is just adaptation under pressure.<br><br>The question is: do you adapt... or rupture?"
+    },
+    {
+      "id": "mara_radiation",
+      "keywords": ["radiation", "rads", "glow"],
+      "text": "Radiation isn’t poison.<br><br>It’s evolution with a timer.<br><br>Tick, tick, tick."
+    },
+    {
+      "id": "mara_vault",
+      "keywords": ["vault", "vaults"],
+      "text": "Vault-Tec didn’t study radiation to cure it.<br><br>They studied it to weaponize it.<br><br>I should know. I was there."
+    },
+    {
+      "id": "mara_experiment",
+      "keywords": ["experiment", "lab", "test"],
+      "text": "Every experiment teaches us something.<br><br>Even the ones that scream."
+    }
+  ],
+
+  "fallback": {
+    "id": "mara_fallback",
+    "text": "If you’re not here to bleed, glow, or study, then you’re wasting both our time."
+  }
+}

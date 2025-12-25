@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TERMINAL // RESTRICTED ACCESS</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/terminal.css" />
+  <style>
+    body {
+      background: #000;
+      color: #00ff41;
+      font-family: 'VT323', monospace;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      image-rendering: pixelated;
+    }
+    #terminal {
+      position: relative;
+      height: 100%;
+      padding: 1rem;
+      box-sizing: border-box;
+      background: linear-gradient(rgba(0,255,65,0.03) 2px, transparent 2px), linear-gradient(90deg, rgba(0,255,65,0.03) 2px, transparent 2px);
+      background-size: 100% 4px, 4px 100%;
+      animation: crt-flicker 0.15s infinite alternate;
+    }
+    @keyframes crt-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.98; } }
+    .back { position: absolute; top: 10px; left: 10px; color: #00ff41; text-decoration: none; font-size: 1.2rem; z-index: 10; }
+    .back:hover { text-shadow: 0 0 10px #00ff41; }
+    #chat { height: calc(100% - 80px); overflow-y: auto; padding-bottom: 1rem; }
+    #inputRow { position: absolute; bottom: 10px; left: 10px; right: 10px; display: flex; gap: 10px; }
+    #input { flex: 1; padding: 12px; font-size: 1.3rem; background: #000; color: #00ff41; border: 2px solid #00ff41; font-family: 'VT323', monospace; }
+    #send { padding: 12px 20px; background: #001100; color: #00ff41; border: 2px solid #00ff41; cursor: pointer; font-family: 'VT323', monospace; }
+    #send:hover { background: #002200; box-shadow: 0 0 15px #00ff41; }
+    #rmControls { display: none; position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; z-index: 10; }
+    #rmControls .btn { font-size: 32px; padding: 15px; margin: 10px; background: #001100; color: #00ff41; border: 2px solid #00ff41; cursor: pointer; }
+    #rmControls .btn:hover { background: #002200; box-shadow: 0 0 15px #00ff41; }
+  </style>
+</head>
+<body>
+  <a href="/" class="back">← RETURN TO GAME</a>
+  
+  <div class="header">
+    <h1>RESTRICTED TERMINAL</h1>
+    <div class="sub">SIGNAL STRENGTH: WEAK // CLASSIFIED</div>
+  </div>
+  
+  <div id="terminal">
+    <div id="chat"></div>
+    <div id="inputRow">
+      <input id="input" type="text" placeholder="> Type message..." autocomplete="off" autofocus>
+      <button id="send">SEND</button>
+    </div>
+    <div id="rmControls">
+      <button id="rmLeft" class="btn">←</button>
+      <button id="rmFire" class="btn">FIRE</button>
+      <button id="rmRight" class="btn">→</button>
+    </div>
+  </div>
+
+  <script src="/js/overseer.js"></script>
+</body>
+</html>

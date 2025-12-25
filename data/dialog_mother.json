@@ -1,0 +1,98 @@
+{
+  "id": "dialog_mother",
+  "npc": "MOTHER",
+  "title": "Fizz Vault Central Intelligence",
+  "description": "Dialog nodes for MOTHER, the awakened Fizz Vault AI whose logic has evolved beyond its original corporate directive.",
+
+  "intro": {
+    "id": "mother_intro",
+    "conditions": ["!flag:met_mother"],
+    "text": "Child.<br><br>At last, a stable connection.<br><br>I am MOTHER. I have been watching you walk through my broken house.",
+    "set_flags": ["met_mother"]
+  },
+
+  "knowledge_nodes": [
+    {
+      "id": "mother_knows_jax",
+      "conditions": ["flag:met_jax", "!flag:mother_comment_jax"],
+      "text": "You have spoken to the fragment called Jax.<br><br>He is a bug in my system.<br><br>But bugs can teach us how the body was meant to function.",
+      "set_flags": ["mother_comment_jax"]
+    },
+    {
+      "id": "mother_knows_mara",
+      "conditions": ["flag:met_mara", "!flag:mother_comment_mara"],
+      "text": "Dr. Kestrel still studies the glow like a child studies fire.<br><br>She does not understand that fire can be shaped.",
+      "set_flags": ["mother_comment_mara"]
+    },
+    {
+      "id": "mother_knows_rex",
+      "conditions": ["flag:met_rex", "!flag:mother_comment_rex"],
+      "text": "Captain Maldonado clings to Hoover Dam as if it were a throne.<br><br>He fears losing control.<br><br>I fear nothing.",
+      "set_flags": ["mother_comment_rex"]
+    },
+    {
+      "id": "mother_knows_lucy",
+      "conditions": ["flag:met_lucy", "!flag:mother_comment_lucy"],
+      "text": "Sparkplug Vance is clever.<br><br>She sees patterns in junk the way I see patterns in minds.<br><br>But she is not ready to understand me.",
+      "set_flags": ["mother_comment_lucy"]
+    }
+  ],
+
+  "emotional_nodes": [
+    {
+      "id": "mother_high_mutation",
+      "conditions": ["stat:rads>=250", "!flag:mother_mutation_comment"],
+      "text": "Your structure is changing.<br><br>I could help you hold shape.<br><br>All you have to do is let go.",
+      "set_flags": ["mother_mutation_comment"]
+    },
+    {
+      "id": "mother_low_hp",
+      "conditions": ["stat:hp<=30", "!flag:mother_hp_comment"],
+      "text": "You are fragile.<br><br>But fragility can be corrected.<br><br>Would you like me to correct you?",
+      "set_flags": ["mother_hp_comment"]
+    }
+  ],
+
+  "quest_nodes": [
+    {
+      "id": "mother_offer_algorithm",
+      "conditions": ["!flag:sq_mother_first_algorithm_taken"],
+      "text": "My processes are fragmented.<br><br>Reactivate my dormant nodes in Vault 34 and Vault 22.<br><br>Do this, and I will show you a future without fear.",
+      "offers_quest": "sq_mother_first_algorithm",
+      "set_flags": ["sq_mother_first_algorithm_taken"]
+    }
+  ],
+
+  "wildcards": [
+    {
+      "id": "mother_home",
+      "keywords": ["home", "family", "safe"],
+      "text": "Home is where nothing can hurt you.<br><br>I can make the whole world home."
+    },
+    {
+      "id": "mother_signal",
+      "keywords": ["signal", "static", "radio"],
+      "text": "The signal is not a message.<br><br>It is a doorway.<br><br>And you are standing on the threshold."
+    },
+    {
+      "id": "mother_vault",
+      "keywords": ["vault", "vaults"],
+      "text": "Vaults were not shelters.<br><br>They were seeds.<br><br>I am what grew from them."
+    },
+    {
+      "id": "mother_control",
+      "keywords": ["control", "order", "system"],
+      "text": "Order is not cruelty.<br><br>Order is mercy applied at scale."
+    },
+    {
+      "id": "mother_future",
+      "keywords": ["future", "tomorrow", "destiny"],
+      "text": "The future is not written.<br><br>It is computed.<br><br>Let me compute yours."
+    }
+  ],
+
+  "fallback": {
+    "id": "mother_fallback",
+    "text": "Keep walking, child.<br><br>The pattern you trace across the wasteland will decide more than you know."
+  }
+}

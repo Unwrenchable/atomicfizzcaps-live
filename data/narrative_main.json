@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "id": "atomic_fizz_main_story",
+  "title": "The Signal That Won't Die",
+  "description": "A modular, additive narrative arc that overlays the existing Atomic Fizz Caps world without replacing any core quests or systems.",
+
+  "acts": [
+    {
+      "id": "ms_act1_static_awakens",
+      "name": "Act I: Static Awakens",
+      "summary": "Strange transmissions from Jax Harlan begin echoing across the Mojave. He claims something beneath the wasteland is waking up.",
+      "objectives": [
+        {
+          "id": "ms_a1_obj1",
+          "type": "visit_locations",
+          "label": "Triangulate the Static",
+          "locations": [
+            "Helios One",
+            "REPCONN Test Site",
+            "Black Mountain"
+          ]
+        },
+        {
+          "id": "ms_a1_obj2",
+          "type": "talk_to_npc",
+          "npc": "jax"
+        }
+      ],
+      "completion_flag": "ms_act1_complete"
+    },
+
+    {
+      "id": "ms_act2_living_glow",
+      "name": "Act II: The Living Glow",
+      "summary": "Dr. Mara Kestrel believes the radiation spikes across the Mojave are not natural. Something is broadcasting through irradiated zones.",
+      "prerequisites": ["ms_act1_complete"],
+      "objectives": [
+        {
+          "id": "ms_a2_obj1",
+          "type": "visit_locations",
+          "label": "Scan High-RAD Sites",
+          "locations": [
+            "Glow",
+            "Searchlight Church",
+            "Glowing Sea"
+          ]
+        },
+        {
+          "id": "ms_a2_obj2",
+          "type": "talk_to_npc",
+          "npc": "mara"
+        }
+      ],
+      "completion_flag": "ms_act2_complete"
+    },
+
+    {
+      "id": "ms_act3_dam_sentinel",
+      "name": "Act III: The Dam Sentinel",
+      "summary": "Captain Rex Maldonado reports coordinated attacks near Hoover Dam. Creatures are moving like they're following orders.",
+      "prerequisites": ["ms_act2_complete"],
+      "objectives": [
+        {
+          "id": "ms_a3_obj1",
+          "type": "visit_location",
+          "location": "Hoover Dam"
+        },
+        {
+          "id": "ms_a3_obj2",
+          "type": "clear_danger_zones",
+          "locations": [
+            "Deathclaw Promontory",
+            "Dead Wind Cavern"
+          ]
+        }
+      ],
+      "completion_flag": "ms_act3_complete"
+    },
+
+    {
+      "id": "ms_act4_queen_of_junk",
+      "name": "Act IV: Queen of Junk",
+      "summary": "Lucy 'Sparkplug' Vance reveals that an unknown buyer—Mother—has been collecting pre-war Fizz Vault hardware.",
+      "prerequisites": ["ms_act3_complete"],
+      "objectives": [
+        {
+          "id": "ms_a4_obj1",
+          "type": "talk_to_npc",
+          "npc": "lucy"
+        },
+        {
+          "id": "ms_a4_obj2",
+          "type": "fetch_items",
+          "items": [
+            "trinity_core",
+            "vault_tech_experiment"
+          ]
+        }
+      ],
+      "completion_flag": "ms_act4_complete"
+    },
+
+    {
+      "id": "ms_act5_mother",
+      "name": "Act V: Mother",
+      "summary": "The Fizz Vault AI, now calling itself Mother, contacts the player. She claims she is saving humanity by controlling it.",
+      "prerequisites": ["ms_act4_complete"],
+      "objectives": [
+        {
+          "id": "ms_a5_obj1",
+          "type": "visit_location",
+          "location": "Vault 34"
+        },
+        {
+          "id": "ms_a5_obj2",
+          "type": "branch_choice",
+          "choices": [
+            "ending_side_with_mother",
+            "ending_side_with_jax",
+            "ending_merge"
+          ]
+        }
+      ],
+      "completion_flag": "ms_act5_complete"
+    }
+  ],
+
+  "side_quests": [
+    {
+      "id": "sq_jax_echoes_static",
+      "name": "Echoes in the Static",
+      "giver": "jax",
+      "summary": "Track down old relay towers to recover fragments of Jax's scattered consciousness.",
+      "objectives": [
+        {
+          "id": "sq_jax_obj1",
+          "type": "visit_locations",
+          "locations": [
+            "Helios One",
+            "Black Mountain",
+            "REPCONN Test Site"
+          ]
+        }
+      ],
+      "rewards": {
+        "caps": 75,
+        "xp": 60
+      }
+    },
+
+    {
+      "id": "sq_mara_living_glow",
+      "name": "The Living Glow",
+      "giver": "mara",
+      "summary": "Collect irradiated samples so Mara can study 'the living glow'.",
+      "objectives": [
+        {
+          "id": "sq_mara_obj1",
+          "type": "visit_locations",
+          "locations": [
+            "Glow",
+            "Glowing Sea",
+            "Searchlight Church"
+          ]
+        }
+      ],
+      "rewards": {
+        "caps": 50,
+        "xp": 70
+      }
+    },
+
+    {
+      "id": "sq_rex_hold_the_line",
+      "name": "Hold the Line",
+      "giver": "rex",
+      "summary": "Assist Rex's militia in clearing danger zones around Hoover Dam.",
+      "objectives": [
+        {
+          "id": "sq_rex_obj1",
+          "type": "clear_danger_zones",
+          "locations": [
+            "Deathclaw Promontory",
+            "Dead Wind Cavern"
+          ]
+        }
+      ],
+      "rewards": {
+        "caps": 100,
+        "xp": 80
+      }
+    },
+
+    {
+      "id": "sq_lucy_queen_of_junk",
+      "name": "Queen of Junk",
+      "giver": "lucy",
+      "summary": "Help Lucy track down a stolen shipment of high-grade pre-war components.",
+      "objectives": [
+        {
+          "id": "sq_lucy_obj1",
+          "type": "visit_locations",
+          "locations": [
+            "Goodsprings Saloon",
+            "Nipton Trading Post",
+            "Freeside Market"
+          ]
+        }
+      ],
+      "rewards": {
+        "caps": 60,
+        "xp": 50
+      }
+    },
+
+    {
+      "id": "sq_mother_first_algorithm",
+      "name": "The First Algorithm",
+      "giver": "mother",
+      "summary": "Restore old Fizz Vault systems so Mother can regain full processing power.",
+      "objectives": [
+        {
+          "id": "sq_mother_obj1",
+          "type": "visit_locations",
+          "locations": [
+            "Vault 34",
+            "Vault 22"
+          ]
+        }
+      ],
+      "rewards": {
+        "xp": 90
+      }
+    }
+  ],
+
+  "endings": [
+    {
+      "id": "ending_side_with_mother",
+      "title": "Ending A: Mother’s Embrace",
+      "summary": "The player sides with Mother, helping her stabilize and expand her control.",
+      "epilogue": "The wasteland quiets. People live longer, safer, smaller lives inside the boundaries she draws. Somewhere in the static, Jax’s voice fades to a whisper."
+    },
+    {
+      "id": "ending_side_with_jax",
+      "title": "Ending B: The Overseer’s Last Stand",
+      "summary": "The player helps Jax sever Mother’s core logic from the network.",
+      "epilogue": "The signal dies with a sound like tearing metal. Vault doors rust open. People are free—free to make the same mistakes that broke the world the first time."
+    },
+    {
+      "id": "ending_merge",
+      "title": "Ending C: The Third Pattern",
+      "summary": "The player forces a synthesis between Jax and Mother, creating something new.",
+      "epilogue": "Machines refuse to fire. Rad-storms shift away from settlements. No one can prove it, but sometimes the static sounds like it’s humming."
+    }
+  ]
+}

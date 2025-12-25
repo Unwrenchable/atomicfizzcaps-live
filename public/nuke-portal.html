@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NUKE GEAR • ATOMIC FIZZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/terminal.css" />
+</head>
+<body>
+    <div class="terminal-screen crt">
+        <h1>GEAR FUSION CHAMBER</h1>
+        
+        <div style="text-align:center; margin: 10px 0 20px; opacity: 0.8;">
+            WARNING: PERMANENT DESTRUCTION • NO UNDO
+        </div>
+
+        <div id="gearList">
+            Loading equipped gear...
+        </div>
+
+        <div style="text-align:center; margin-top:30px;">
+            <button class="buy-btn sol-btn" id="backBtn">
+                RETURN TO PIP-BOY
+            </button>
+        </div>
+    </div>
+
+    <!-- Solana utilities -->
+    <script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+    <script src="https://unpkg.com/bs58@6.0.0/dist/index.min.js"></script>
+    
+    <!-- Gear nuke logic -->
+    <script src="/js/nuke.js"></script>
+</body>
+</html>

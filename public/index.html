@@ -1,126 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Atomic Fizz Caps • Vault 77 Wasteland GPS Game </title>
-    <meta name="description" content="Hunt real-world Mojave hotspots, claim CAPS & NFTs on Solana. Walk the wasteland, survive the radiation. War never changes. ">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#001100" /> <!-- Dark green Pip-Boy theme -->
+  <meta property="og:title" content="Atomic Fizz Caps" />
+  <meta property="og:description" content="Post-apocalyptic browser game with real Solana wallet integration" />
+  <meta property="og:image" content="/images/og-image.png" /> <!-- Add later if you have one -->
+  <title>Atomic Fizz Caps - Pip-Boy</title>
 
-<!-- Favicon (replace with your own hosted files for best results) -->
-<link rel="icon" href="https://pbs.twimg.com/profile_images/2002853135044562944/3KxGLLJ-.jpg" sizes="any">
-<link rel="apple-touch-icon" href="https://pbs.twimg.com/profile_images/2002853135044562944/3KxGLLJ-.jpg">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-<!-- Open Graph / Social Preview Tags (fixes Google & X share thumbnails) -->
-<meta property="og:title" content="Atomic Fizz Caps • Vault 77 Wasteland GPS Game ">
-<meta property="og:description" content="Connect wallet, lock GPS, hunt red hotspots in the real Mojave. Claim CAPS, gear NFTs & survive rising RADS. Fallout geo-hunt on Solana.">
-<meta property="og:image" content="https://www.corrosionhour.com/wp-content/uploads/2022/10/fallout-4-pip-boy-status.png">
-<meta property="og:image:width" content="1918">
-<meta property="og:image:height" content="1080">
-<meta property="og:image:alt" content="Fallout Pip-Boy screen showing status, HP, map markers and green terminal aesthetic">
-<meta property="og:url" content="https://www.atomicfizzcaps.xyz">
-<meta property="og:type" content="website">
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
 
-<!-- Twitter/X Card (ensures perfect previews when shared on X) -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Atomic Fizz Caps • Vault 77 Wasteland GPS Game ">
-<meta name="twitter:description" content="Real-world Fallout GPS hunt on Solana. Claim hotspots, earn CAPS & NFTs.">
-<meta name="twitter:image" content="https://www.corrosionhour.com/wp-content/uploads/2022/10/fallout-4-pip-boy-status.png">
-<meta name="twitter:image:alt" content="Pip-Boy interface with map, status bars and wasteland hotspots">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<link rel="stylesheet" href="/css/pipboy.css" />
-<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"></head>
+  <!-- Leaflet CSS + JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" defer></script>
+
+  <!-- Custom Pip-Boy styles -->
+  <link rel="stylesheet" href="/css/pipboy.css" />
+</head>
 <body>
-    <a href="/overseer.html" class="overseer-btn">ACCESS OVERSEER TERMINAL</a>
-    <a href="https://x.com/AtomicFizzCaps" class="overseer-btn">TWITTER</a>
-
-<div class="pipboy">
+  <div class="pipboy">
     <div class="panel">
+      <header>
         <h1>ATOMIC FIZZ CAPS</h1>
-        <div class="sub">VAULT 77 • WASTELAND GPS</div>
+        <div class="sub">PIP-BOY 3000 MARK IV</div>
+      </header>
 
-        <div class="header-row">
-            <div class="controls">
-                <button class="btn wallet-btn" id="connectWallet">CONNECT WALLET</button>
-                <button class="btn" id="requestGpsBtn">REQUEST GPS LOCK</button>
-            </div>
+      <div class="header-row">
+        <div class="controls">
+          <button class="wallet-btn" id="connectWalletBtn">CONNECT WALLET</button>
+          <button class="btn" id="refreshPlayerBtn">REFRESH STATUS</button>
+          <!-- Terminal unlock button (shown when ready) -->
+          <button class="btn hidden" id="terminalUnlockBtn">ACCESS RESTRICTED SIGNAL</button>
         </div>
+        <div id="status" class="status-text">STATUS: STANDBY</div>
+      </div>
 
-        <div id="status" class="status-good">Status: ready – tap REQUEST GPS if needed</div>
-
-        <div class="pip-status">
-            <div class="pip-lvl">LVL <span id="lvl">1</span></div>
-            <div class="pip-hp-container">
-                <div class="pip-hp-fill" id="hpFill"></div>
-                <div class="pip-rad-fill" id="radFill"></div>
-                <div class="pip-hp-text" id="hpText">HP 100 / 100</div>
-            </div>
-            <div class="pip-caps"><span id="caps">0</span> CAPS</div>
+      <!-- Player Stats -->
+      <section class="pip-status">
+        <div class="pip-lvl">LVL: <span id="playerLevel">1</span></div>
+        <div class="pip-hp-container">
+          <div class="pip-hp-fill" id="hpFill" style="width: 100%;"></div>
+          <div class="pip-rad-fill" id="radFill" style="width: 0%;"></div>
+          <div class="pip-hp-text" id="hpText">HP 100 / 100</div>
         </div>
+        <div class="pip-caps">CAPS: <span id="playerCaps">0</span></div>
+      </section>
 
-        <div class="pip-claimed">CLAIMED <span id="claimed">0</span></div>
+      <div class="pip-xp-container">
+        <div class="pip-xp-fill" id="xpFill" style="width: 0%;"></div>
+        <div class="pip-claimed" id="xpStatus">XP: 0 / 100</div>
+      </div>
 
-        <div id="mapWrap">
-            <div id="map"></div>
-            <div class="static-noise"></div>
-            <div class="gps-badge">
-                <div id="accDot" class="acc-dot"></div>
-                <div id="accText">GPS: waiting...</div>
-            </div>
+      <!-- Map Section -->
+      <section id="mapWrap">
+        <div id="map"></div>
+        <div class="gps-badge">
+          <div class="acc-dot" id="gpsDot"></div>
+          <span id="gpsStatus">GPS: UNKNOWN</span>
         </div>
+        <button id="requestGpsBtn">REQUEST GPS ACCESS</button>
+      </section>
 
-        <div class="tabs">
-            <div class="tab active" data-panel="map">MAP</div>
-            <div class="tab" data-panel="stat">STATUS</div>
-            <div class="tab" data-panel="items">INVENTORY</div>
-            <div class="tab" data-panel="quests">QUESTS</div>
-            <div class="tab" data-panel="shop">SCAVENGER'S EXCHANGE</div>
-        </div>
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="map" role="tab" aria-selected="true">MAP</button>
+        <button class="tab" data-tab="quests" role="tab" aria-selected="false">QUESTS</button>
+        <button class="tab" data-tab="gear" role="tab" aria-selected="false">GEAR</button>
+        <button class="tab" data-tab="narrative" role="tab" aria-selected="false">LORE</button>
+      </div>
 
-        <div class="terminal" id="terminal">
-            <button class="btn" id="panelClose">X</button>
-            <h4 id="panelTitle">TERMINAL</h4>
-            <div id="panelBody">Loading...</div>
-        </div>
+      <!-- Tab Content -->
+      <div class="tab-content" id="tab-map"></div>
 
-        <div id="mintModal" class="mint-modal">
-            <div>
-                <div id="mintTitle">LOOT CLAIMED</div>
-                <div id="mintMsg" class="muted-small">+0 CAPS</div>
-                <button class="btn" id="mintCloseBtn">Close</button>
-            </div>
-        </div>
+      <div class="tab-content hidden" id="tab-quests">
+        <div id="questsList">Loading quests...</div>
+      </div>
 
-        <div id="tutorialModal" class="mint-modal">
-            <div>
-                <div class="modal-title">WELCOME TO THE WASTELAND</div>
-                <div class="modal-content">
-                    <p>→ Connect Phantom wallet</p>
-                    <p>→ Allow GPS</p>
-                    <p>→ Hunt markers – get within 50m to claim</p>
-                    <p>→ Claims award CAPS, RADS, XP, quest progress & chance for legendary gear NFTs</p>
-                    <p>→ Equip gear in INVENTORY for powerful Fallout bonuses</p>
-                    <p>→ Complete dynamic QUESTS for epic rewards</p>
-                    
-<p>Survive the atomic fizz </p>
-                </div>
-                <button class="btn" id="tutorialClose">ENTER WASTELAND</button>
-            </div>
-        </div>
+      <div class="tab-content hidden" id="tab-gear">
+        <div id="gearList">Loading equipped gear...</div>
+      </div>
+
+      <!-- Narrative / Lore -->
+      <div class="tab-content hidden" id="tab-narrative">
+        <section id="narrativeSection">
+          <details class="crt-panel">
+            <summary>▼ MAIN STORY ARCHIVES</summary>
+            <div id="pipboy-story-container">Loading main narrative...</div>
+          </details>
+
+          <details class="crt-panel">
+            <summary>▼ NPC DIALOG RECORDS</summary>
+            <div id="pipboy-dialog-container">Select an NPC to view records...</div>
+          </details>
+
+          <details class="crt-panel">
+            <summary>▼ TERMINAL LOGS</summary>
+            <div id="pipboy-logs-container">Loading terminal entries...</div>
+          </details>
+        </section>
+
+        <!-- Overseer Terminal Link -->
+        <section id="overseerSection">
+          <details class="crt-panel">
+            <summary>▼ OVERSEER TERMINAL ACCESS</summary>
+            <p>Clearance granted after sufficient exploration.</p>
+            <button id="terminalUnlockBtn" class="hidden">ENTER RESTRICTED TERMINAL</button>
+          </details>
+        </section>
+      </div>
     </div>
-</div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
-<script src="https://unpkg.com/bs58@6.0.0/dist/index.min.js"></script>
-<script src="/js/script.js"></script>
+    <!-- Terminal Overlay -->
+    <div class="terminal hidden" id="terminalOverlay">
+      <div class="terminal-header">TERMINAL ACCESS - CLASSIFIED</div>
+      <div id="terminalContent"></div>
+      <button class="close-terminal" id="closeTerminalBtn">EXIT</button>
+    </div>
+  </div>
 
-<!-- Sound Effects -->
-<audio id="sfxClaim" preload="auto"><source src="https://assets.codepen.io/605876/fallout-terminal-beep.mp3" type="audio/mpeg"></audio>
-<audio id="sfxRadTick" preload="auto"><source src="https://assets.codepen.io/605876/geiger-counter.mp3" type="audio/mpeg"></audio>
-<audio id="sfxEquip" preload="auto"><source src="https://assets.codepen.io/605876/fallout-inventory-click.mp3" type="audio/mpeg"></audio>
-<audio id="sfxLevelUp" preload="auto"><source src="https://assets.codepen.io/605876/fallout-level-up.mp3" type="audio/mpeg"></audio>
-<audio id="sfxGearDrop" preload="auto"><source src="https://assets.codepen.io/605876/fallout-epic-loot.mp3" type="audio/mpeg"></audio>
-<audio id="sfxButton" preload="auto"><source src="https://assets.codepen.io/605876/pipboy-button-click.mp3" type="audio/mpeg"></audio></body>
+  <!-- Scripts -->
+  <script type="module" src="/js/main.js"></script>
+
+  <!-- Fallback -->
+  <noscript>
+    <p style="color: #ff6666; text-align: center; padding: 2rem; font-family: 'VT323', monospace;">
+      JavaScript is required for the full Pip-Boy experience.<br>
+      Enable JS or check your browser settings.
+    </p>
+  </noscript>
+</body>
 </html>
-

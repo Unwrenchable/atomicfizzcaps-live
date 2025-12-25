@@ -1,0 +1,93 @@
+{
+  "id": "dialog_rex",
+  "npc": "Captain Rex Maldonado",
+  "title": "The Dam Sentinel",
+  "description": "Dialog nodes for Captain Rex Maldonado, the gruff militia leader defending Hoover Dam from coordinated threats.",
+
+  "intro": {
+    "id": "rex_intro",
+    "conditions": ["!flag:met_rex"],
+    "text": "Stop right there.<br><br>This line is for fighters, not tourists.<br><br>Name’s Captain Rex Maldonado. I keep Hoover Dam from falling apart — stone and people both.",
+    "set_flags": ["met_rex"]
+  },
+
+  "knowledge_nodes": [
+    {
+      "id": "rex_knows_jax",
+      "conditions": ["flag:met_jax", "!flag:rex_comment_jax"],
+      "text": "You’ve been talking to the static ghost?<br><br>Jax means well, but he’s half signal, half sorrow.<br><br>Don’t let him drag you into the dark with him.",
+      "set_flags": ["rex_comment_jax"]
+    },
+    {
+      "id": "rex_knows_mara",
+      "conditions": ["flag:met_mara", "!flag:rex_comment_mara"],
+      "text": "Mara? She’s brilliant, but she stares at radiation like it’s a sunrise.<br><br>People like that forget it kills you.",
+      "set_flags": ["rex_comment_mara"]
+    },
+    {
+      "id": "rex_knows_lucy",
+      "conditions": ["flag:met_lucy", "!flag:rex_comment_lucy"],
+      "text": "Sparkplug’s a good kid. Too smart for her own good.<br><br>If she offers you a deal, read the fine print twice.",
+      "set_flags": ["rex_comment_lucy"]
+    },
+    {
+      "id": "rex_knows_mother",
+      "conditions": ["flag:met_mother", "!flag:rex_comment_mother"],
+      "text": "That voice in your head telling you she knows best?<br><br>Yeah. We’ve picked up her signal too.<br><br>Anything that calm is either lying or broken.",
+      "set_flags": ["rex_comment_mother"]
+    }
+  ],
+
+  "emotional_nodes": [
+    {
+      "id": "rex_low_hp",
+      "conditions": ["stat:hp<=30", "!flag:rex_warn_hp"],
+      "text": "You’re bleeding all over my perimeter.<br><br>Patch yourself up before you get someone else killed.",
+      "set_flags": ["rex_warn_hp"]
+    },
+    {
+      "id": "rex_high_rads",
+      "conditions": ["stat:rads>=200", "!flag:rex_warn_rads"],
+      "text": "You’re glowing like a campfire in a radstorm.<br><br>Get yourself cleaned up before you melt into the concrete.",
+      "set_flags": ["rex_warn_rads"]
+    }
+  ],
+
+  "quest_nodes": [
+    {
+      "id": "rex_offer_hold_line",
+      "conditions": ["!flag:sq_rex_hold_the_line_taken"],
+      "text": "You want to help? Good.<br><br>We’ve got hotspots around the Dam crawling with things that shouldn’t be walking.<br><br>Dead Wind Cavern. Deathclaw Promontory.<br><br>Clear them out, and maybe I start trusting you.",
+      "offers_quest": "sq_rex_hold_the_line",
+      "set_flags": ["sq_rex_hold_the_line_taken"]
+    }
+  ],
+
+  "wildcards": [
+    {
+      "id": "rex_dam",
+      "keywords": ["dam", "hoover", "water"],
+      "text": "This concrete wall is the only reason the Mojave isn’t a bigger graveyard.<br><br>You learn to love it. Or die defending it."
+    },
+    {
+      "id": "rex_legion",
+      "keywords": ["legion", "caesar"],
+      "text": "Legion’s been sniffing around Cottonwood Cove again.<br><br>They want the Dam. Everyone wants the Dam."
+    },
+    {
+      "id": "rex_ncr",
+      "keywords": ["ncr", "republic"],
+      "text": "NCR means well, but they’re stretched thinner than a Brahmin hide in the sun.<br><br>They’ll take any help they can get."
+    },
+    {
+      "id": "rex_mutants",
+      "keywords": ["mutant", "super mutant", "nightkin"],
+      "text": "Mutants out of Black Mountain keep testing our lines.<br><br>Smart ones stay away. The others… not so much."
+    }
+  ],
+
+  "fallback": {
+    "id": "rex_fallback",
+    "text": "You still here. Then we still have work to do."
+  }
+}
