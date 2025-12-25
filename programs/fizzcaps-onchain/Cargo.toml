@@ -1,0 +1,20 @@
+[package]
+name = "fizzcaps-onchain"
+version = "0.1.0"
+description = "Atomic Fizz Caps on-chain economy"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "fizzcaps_onchain"
+
+[features]
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.32.1"
+anchor-spl = "0.32.1"
+mpl-token-metadata = "5.1.1"
